@@ -1,1 +1,56 @@
+body{
+    font-family: 'Lato', sans-serif;
+}
 
+main {
+    display: flex;
+}
+
+.recipe {
+    display: flex;
+    border: 1px black solid;
+    width: 380px;
+    height: 364px;
+    flex-direction: column;
+    &-imgContainer{
+        border: 1px yellow solid;
+        min-height: 178px;
+        width: 100%;
+    }
+    &-textContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        &-heading{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1rem;
+            &-title{
+                margin: 0;
+                font-size: 18px;
+        
+            }
+        }
+        &-description{
+            display: flex;
+            border: 1px brown solid;
+            &-ingredients{
+                border: cadetblue solid 1px;
+                &-item{
+                    white-space: nowrap;
+                    font-size: 12px;
+                }
+                
+
+            }
+            &-prep{
+                margin: 0;
+                font-family: 'Roboto', sans-serif;
+                font-size: 12px;
+            }
+        }
+    }
+    
+}

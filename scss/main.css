@@ -1,1 +1,81 @@
-/* No CSS *//*# sourceMappingURL=main.css.map */
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.recipe {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px black solid;
+  width: 380px;
+  height: 364px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.recipe-imgContainer {
+  border: 1px yellow solid;
+  min-height: 178px;
+  width: 100%;
+}
+
+.recipe-textContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+}
+
+.recipe-textContainer-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.recipe-textContainer-heading-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.recipe-textContainer-description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px brown solid;
+}
+
+.recipe-textContainer-description-ingredients {
+  border: cadetblue solid 1px;
+}
+
+.recipe-textContainer-description-ingredients-item {
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.recipe-textContainer-description-prep {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+/*# sourceMappingURL=main.css.map */
