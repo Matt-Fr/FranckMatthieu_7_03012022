@@ -1,26 +1,34 @@
 body{
     font-family: 'Lato', sans-serif;
+    margin: 0 5rem 0 5rem;
 }
 
-main {
+.article-container{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .recipe {
     display: flex;
-    border: 1px black solid;
     width: 380px;
     height: 364px;
     flex-direction: column;
+    padding: 2rem 0;
     &-imgContainer{
-        border: 1px yellow solid;
         min-height: 178px;
         width: 100%;
+        background-color: #C7BEBE;
+        overflow: hidden;
+        border-radius: 0.5rem 0.5rem 0 0;
     }
     &-textContainer{
         display: flex;
         flex-direction: column;
+        border-radius: 0 0 0.5rem 0.5rem;
         padding: 1rem;
+        background-color: #E7E7E7;
+        
         &-heading{
             display: flex;
             align-items: center;
@@ -30,25 +38,38 @@ main {
             &-title{
                 margin: 0;
                 font-size: 18px;
+                font-weight: normal;
         
+            }
+            &-time{
+                font-weight: bold;
+                font-size: 18px;
             }
         }
         &-description{
             display: flex;
-            border: 1px brown solid;
             &-ingredients{
-                border: cadetblue solid 1px;
+                
+                min-width: 50%;
                 &-item{
                     white-space: nowrap;
                     font-size: 12px;
+                    font-weight: bold;
                 }
                 
 
             }
             &-prep{
+                height: 109px;
+                min-width: 50%;
                 margin: 0;
                 font-family: 'Roboto', sans-serif;
                 font-size: 12px;
+                
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 8;
+                -webkit-box-orient: vertical;
             }
         }
     }
