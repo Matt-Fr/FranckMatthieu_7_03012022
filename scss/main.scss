@@ -1,111 +1,133 @@
-body{
-    font-family: 'Lato', sans-serif;
-    margin: 0 5rem 0 5rem;
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0 5rem 0 5rem;
 }
 
-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.researchBar {
+  width: 100%;
+  display: flex;
+
+  &-input {
     width: 100%;
+    height: 69px;
+    background: #e7e7e7;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 18px;
+    padding-left: 1rem;
+  }
+  &-submit {
+    height: 69px;
+    background: none;
+    border: none;
+    padding-right: 1rem;
+    font-size: 25px;
+    background: #e7e7e7;
+    border-radius: 0 5px 5px 0;
+  }
+}
+.researchFields {
+  display: flex;
+  margin-top: 1rem;
+
+  &-form {
+    display: flex;
+    height: 69px;
+
+    &-input {
+      background: #3282f7;
+      color: white;
+      border: none;
+      padding-left: 1rem;
+      border-radius: 5px 0 0 5px;
+      outline-width: 0;
+    }
+    &-btn {
+      color: white;
+      background: #3282f7;
+      border: none;
+      padding: 0 1rem;
+      border-radius: 0 5px 5px 0;
+    }
+  }
 }
 
-.researchBar{
-    width: 100%;
-    
-    display: flex;
-    &-input{
-        width: 100%;
-        height: 69px;
-        background: #E7E7E7;
-        border: none;
-        border-radius: 5px 0 0 5px;
-        font-size: 18px;
-        padding-left: 1rem;
-        
-    }
-    &-submit{
-        
-        height: 69px;
-        background: none;
-        border: none;
-        padding-right: 1rem;
-        font-size: 25px;
-        background: #E7E7E7;
-        border-radius: 0 5px 5px 0;
-
-    }
+.researchFields-form-input::placeholder {
+  color: white;
+  font-size: 18px;
 }
 
-.article-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.article-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .recipe {
+  display: flex;
+  width: 380px;
+  height: 364px;
+  flex-direction: column;
+  padding: 2rem 0;
+  &-imgContainer {
+    min-height: 178px;
+    width: 100%;
+    background-color: #c7bebe;
+    overflow: hidden;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  &-textContainer {
     display: flex;
-    width: 380px;
-    height: 364px;
     flex-direction: column;
-    padding: 2rem 0;
-    &-imgContainer{
-        min-height: 178px;
-        width: 100%;
-        background-color: #C7BEBE;
-        overflow: hidden;
-        border-radius: 0.5rem 0.5rem 0 0;
-    }
-    &-textContainer{
-        display: flex;
-        flex-direction: column;
-        border-radius: 0 0 0.5rem 0.5rem;
-        padding: 1rem;
-        background-color: #E7E7E7;
-        
-        &-heading{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 1rem;
-            &-title{
-                margin: 0;
-                font-size: 18px;
-                font-weight: normal;
-        
-            }
-            &-time{
-                font-weight: bold;
-                font-size: 18px;
-            }
-        }
-        &-description{
-            display: flex;
-            &-ingredients{
-                
-                min-width: 50%;
-                &-item{
-                    white-space: nowrap;
-                    font-size: 12px;
-                    font-weight: bold;
-                }
-                
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1rem;
+    background-color: #e7e7e7;
 
-            }
-            &-prep{
-                height: 109px;
-                min-width: 50%;
-                margin: 0;
-                font-family: 'Roboto', sans-serif;
-                font-size: 12px;
-                
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 8;
-                -webkit-box-orient: vertical;
-            }
-        }
+    &-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 1rem;
+      &-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: normal;
+      }
+      &-time {
+        font-weight: bold;
+        font-size: 18px;
+      }
     }
-    
+    &-description {
+      display: flex;
+      &-ingredients {
+        min-width: 50%;
+        &-item {
+          white-space: nowrap;
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+      &-prep {
+        height: 109px;
+        min-width: 50%;
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
 }
