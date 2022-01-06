@@ -36,32 +36,48 @@ header {
 .researchFields {
   display: flex;
   margin-top: 1rem;
+  color: white;
+  font-size: 18px;
 
   &-form {
     display: flex;
     height: 69px;
+    margin-right: 1rem;
+    border-radius: 5px 5px 5px 5px;
 
     &-input {
-      background: #3282f7;
-      color: white;
+      background: inherit;
+      color: inherit;
       border: none;
       padding-left: 1rem;
       border-radius: 5px 0 0 5px;
       outline-width: 0;
+      font-size: inherit;
     }
     &-btn {
-      color: white;
-      background: #3282f7;
+      color: inherit;
+      background: inherit;
       border: none;
       padding: 0 1rem;
       border-radius: 0 5px 5px 0;
+      font-size: inherit;
     }
   }
 }
 
+.ingredient-form {
+  background: #3282f7;
+}
+.appareil-form {
+  background: #68d9a4;
+}
+
+.ustensiles-form {
+  background: #ed6454;
+}
+
 .researchFields-form-input::placeholder {
   color: white;
-  font-size: 18px;
 }
 
 .article-container {
