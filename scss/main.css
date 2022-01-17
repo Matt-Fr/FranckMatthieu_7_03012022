@@ -90,8 +90,30 @@ header {
   font-size: inherit;
 }
 
+.ingredient-list {
+  position: absolute;
+  background-color: inherit;
+  top: 48px;
+  left: 0;
+  width: 667px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  border-radius: 0 5px 5px 5px;
+  padding: 1rem;
+}
+
+.ingredient-list li {
+  min-width: 33.3%;
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
 .ingredient-form {
   background: #3282f7;
+  position: relative;
 }
 
 .appareil-form {
