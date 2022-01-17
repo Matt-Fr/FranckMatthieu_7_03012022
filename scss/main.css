@@ -57,9 +57,18 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   height: 69px;
   margin-right: 1rem;
   border-radius: 5px 5px 5px 5px;
+}
+
+.researchFields-form-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .researchFields-form-input {

@@ -41,9 +41,14 @@ header {
 
   &-form {
     display: flex;
+    justify-content: space-between;
     height: 69px;
     margin-right: 1rem;
     border-radius: 5px 5px 5px 5px;
+
+    &-label {
+      display: flex;
+    }
 
     &-input {
       background: inherit;
