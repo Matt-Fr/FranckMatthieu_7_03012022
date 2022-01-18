@@ -66,6 +66,7 @@ header {
       padding: 0 1rem;
       border-radius: 0 5px 5px 0;
       font-size: inherit;
+      cursor: pointer;
     }
   }
 }
@@ -76,13 +77,39 @@ header {
   top: 48px;
   left: 0;
   width: 667px;
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   border-radius: 0 5px 5px 5px;
   padding: 1rem;
 }
 
-.ingredient-list li {
+.appareil-list {
+  position: absolute;
+  background-color: inherit;
+  top: 48px;
+  left: 0;
+  width: 667px;
+  display: none;
+  flex-wrap: wrap;
+  border-radius: 0 5px 5px 5px;
+  padding: 1rem;
+}
+
+.ustensiles-list {
+  position: absolute;
+  background-color: inherit;
+  top: 48px;
+  left: 0;
+  width: 667px;
+  display: none;
+  flex-wrap: wrap;
+  border-radius: 0 5px 5px 5px;
+  padding: 1rem;
+}
+
+.ingredient-list li,
+.appareil-list li,
+.ustensiles-list li {
   min-width: 33.3%;
   list-style: none;
   margin-bottom: 1rem;
@@ -94,10 +121,12 @@ header {
 }
 .appareil-form {
   background: #68d9a4;
+  position: relative;
 }
 
 .ustensiles-form {
   background: #ed6454;
+  position: relative;
 }
 
 .researchFields-form-input::placeholder {
@@ -170,4 +199,17 @@ header {
       }
     }
   }
+}
+
+.open {
+  display: flex;
+}
+
+.list {
+  z-index: 100;
+}
+
+.rotate {
+  transform: rotateX(180deg);
+  transition: 0.3s ease-in-out;
 }
