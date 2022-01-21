@@ -9,19 +9,22 @@ export class DropdownManager {
     });
   }
   chevronClick(e) {
-    this.chevrons.forEach((item) => {
-      item.classList.remove("rotate");
-    });
     const list = e.currentTarget.nextElementSibling;
     const chevron = e.currentTarget.children[0];
+
+    this.chevrons.forEach((item) => {
+      if (item !== chevron) {
+        item.classList.remove("rotate");
+      }
+    });
+
     this.lists.forEach((item) => {
       if (item !== list) {
         item.classList.remove("open");
       }
     });
 
+    chevron.classList.toggle("rotate");
     list.classList.toggle("open");
-
-    chevron.classList.add("rotate");
   }
 }
