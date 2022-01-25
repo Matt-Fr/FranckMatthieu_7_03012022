@@ -254,7 +254,6 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  white-space: nowrap;
   font-size: 12px;
   font-weight: bold;
 }
