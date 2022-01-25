@@ -13,7 +13,7 @@ class RecipesManager {
     const RecipeArray = Array.from(this.recipes);
     const recipesContainer = document.querySelector(".article-container");
 
-    const hello = RecipeArray.map((rec) => {
+    const article = RecipeArray.map((rec) => {
       return `<article class="recipe">
           <div class="recipe-imgContainer">
             <img src="" alt="" />
@@ -32,25 +32,15 @@ class RecipesManager {
             </div>
             <div class="recipe-textContainer-description">
               <div class="recipe-textContainer-description-ingredients">
-              ${rec.ingredients.map((ing) => ing.ingredient)}
-                <span class="recipe-textContainer-description-ingredients-item">
-                  coulis de tomate: 25cl
-                </span>
-                <span class="recipe-textContainer-description-ingredients-item">
-                  coulis de tomate: 25cl
-                </span>
-                <span class="recipe-textContainer-description-ingredients-item">
-                  coulis de tomate: 25cl
-                </span>
-                <span class="recipe-textContainer-description-ingredients-item">
-                  coulis de tomate: 25cl
-                </span>
-                <span class="recipe-textContainer-description-ingredients-item">
-                  coulis de tomate: 25cl
-                </span>
-                <span class="recipe-textContainer-description-ingredients-item">
-                  coulis de tomate: 25cl
-                </span>
+              ${rec.ingredients
+                .map(
+                  (ing) =>
+                    `<span class="recipe-textContainer-description-ingredients-item">
+                  ${ing.ingredient}: ${ing.quantity} ${ing.unit}
+                </span>`
+                )
+                .join("")}
+            
               </div>
               <p class="recipe-textContainer-description-prep">
                 ${rec.description}
@@ -60,7 +50,7 @@ class RecipesManager {
         </article>`;
     }).join("");
 
-    recipesContainer.innerHTML = hello;
+    recipesContainer.innerHTML = article;
   }
   //   console.log(recipes);
   // //   displayRecipes(recipes) {

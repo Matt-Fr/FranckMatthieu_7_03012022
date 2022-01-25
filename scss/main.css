@@ -251,6 +251,9 @@ header {
 }
 
 .recipe-textContainer-description-ingredients-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   white-space: nowrap;
   font-size: 12px;
   font-weight: bold;
