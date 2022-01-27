@@ -1,15 +1,16 @@
 export class RecipesManager {
-  constructor(recipesArr) {
-    this.recipes = recipesArr;
+  constructor(data) {
+    this.data = data;
     this.display();
   }
 
   display() {
-    const RecipeArray = Array.from(this.recipes);
+    const data = this.data;
     const recipesContainer = document.querySelector(".article-container");
 
-    const article = RecipeArray.map((rec) => {
-      return `<article class="recipe">
+    const article = data
+      .map((rec) => {
+        return `<article class="recipe">
           <div class="recipe-imgContainer">
             <img src="" alt="" />
           </div>
@@ -43,7 +44,8 @@ export class RecipesManager {
             </div>
           </div>
         </article>`;
-    }).join("");
+      })
+      .join("");
 
     recipesContainer.innerHTML = article;
   }
