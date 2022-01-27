@@ -1,30 +1,27 @@
 import data from "./data.js";
 
 export class ButtonListFactory {
-  constructor(
-    name, //???
-    button, //btn à appeller dans le html
-    listOfTags, //list à apeller dans le html
-    nameOfClass, //???
-    buttonForDisplay, // For opening not important
-    inactiveContainerID // might not be important
-  ) {
+  constructor(name, listOfTags) {
     this.name = name;
     this.listOfTags = listOfTags;
     this.allIngredients = [];
     this.allAppliances = [];
     this.allUstensils = [];
 
-    this.articlesArray = [...document.querySelectorAll(".recipe")];
     //CALL METHODS
     this.addTagstoDropDown(name);
     this.deleteDuplicateTags();
     this.generateItemsListInDOM(this.allIngredients);
     this.generateItemsListInDOM(this.allAppliances);
     this.generateItemsListInDOM(this.allUstensils);
+
+    console.log(this.allIngredients);
   }
   addTagstoDropDown(name) {
     if (name === "ingredients") {
+      data.forEach((ing) => {
+        this.allIngredients.push(ing.ingredients);
+      });
     }
     if (name === "appliances") {
       data.forEach((appl) => {
@@ -51,12 +48,3 @@ export class ButtonListFactory {
     });
   }
 }
-
-// new ButtonListFactory(
-//   "ingredient",
-//   buttonIngredients,
-//   listOfIngredients,
-//   "ingredients",
-//   buttonIngredientExpanded,
-//   "container-1_active"
-// );
