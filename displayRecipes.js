@@ -32,7 +32,7 @@ export class RecipesManager {
                 .map(
                   (ing) =>
                     `<span class="recipe-textContainer-description-ingredients-item">
-                  ${ing.ingredient}: ${ing.quantity} ${ing.unit}
+                  ${ing.ingredient}: ${ing.quantity || ""} ${ing.unit || ""}
                 </span>`
                 )
                 .join("")}

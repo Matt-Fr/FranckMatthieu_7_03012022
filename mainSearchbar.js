@@ -12,7 +12,10 @@ export class MainSearchbar {
       const filteredRecipes = listRecipe.filter((recipe) => {
         return (
           recipe.name.toLowerCase().includes(searchString) ||
-          recipe.appliance.toLowerCase().includes(searchString)
+          recipe.appliance.toLowerCase().includes(searchString) ||
+          recipe.ingredients.find((el) =>
+            el.ingredient.toLowerCase().includes(searchString)
+          )
         );
       });
       new RecipesManager(filteredRecipes);

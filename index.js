@@ -15,5 +15,5 @@ new RecipesManager(data);
 new MainSearchbar();
 
 new ButtonListFactory("ingredients", ingredientList);
-new ButtonListFactory("appliances", appareilList);
+new ButtonListFactory("appliance", appareilList);
 new ButtonListFactory("ustensils", ustensilList);
