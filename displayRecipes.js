@@ -47,8 +47,4 @@ export class RecipesManager {
 
     recipesContainer.innerHTML = article;
   }
-  //   console.log(recipes);
-  // //   displayRecipes(recipes) {
-  // //     console.log(recipes);
-  // //   }
 }

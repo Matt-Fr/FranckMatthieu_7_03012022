@@ -4,12 +4,13 @@ export class ButtonListFactory {
   constructor(
     name, //???
     button, //btn à appeller dans le html
-    listOfItems, //list à apeller dans le html
+    listOfTags, //list à apeller dans le html
     nameOfClass, //???
     buttonForDisplay, // For opening not important
     inactiveContainerID // might not be important
   ) {
     this.name = name;
+    this.listOfTags = listOfTags;
     this.allIngredients = [];
     this.allAppliances = [];
     this.allUstensils = [];
@@ -18,8 +19,9 @@ export class ButtonListFactory {
     //CALL METHODS
     this.addTagstoDropDown(name);
     this.deleteDuplicateTags();
-    console.log(this.allAppliances);
-    console.log(this.allIngredients);
+    this.generateItemsListInDOM(this.allIngredients);
+    this.generateItemsListInDOM(this.allAppliances);
+    this.generateItemsListInDOM(this.allUstensils);
   }
   addTagstoDropDown(name) {
     if (name === "ingredients") {
@@ -29,12 +31,24 @@ export class ButtonListFactory {
         this.allAppliances.push(appl.appliance);
       });
     }
+    if (name === "ustensils") {
+      data.forEach((usten) => {
+        this.allUstensils.push(usten.ustensils);
+      });
+    }
   }
 
   deleteDuplicateTags() {
     this.allIngredients = Array.from(new Set(this.allIngredients));
     this.allAppliances = Array.from(new Set(this.allAppliances));
     this.allUstensils = Array.from(new Set(this.allUstensils));
+  }
+
+  generateItemsListInDOM(array) {
+    array.forEach((item) => {
+      this.listOfTags.innerHTML += `
+      <li>${item}</li>`;
+    });
   }
 }
 
