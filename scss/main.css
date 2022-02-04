@@ -92,6 +92,41 @@ header {
   cursor: pointer;
 }
 
+.tagList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tagList-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+}
+
+.tagList-container-item {
+  list-style: none;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 1rem;
+  color: white;
+  border-radius: 0.3rem;
+}
+
+.tagList-container-item-ingredient {
+  background-color: #ed6454;
+}
+
+.tagList-container-item-appliance {
+  background-color: #68d9a4;
+}
+
+.tagList-container-item-ustensile {
+  background-color: #3282f7;
+}
+
 .ingredient-list {
   position: absolute;
   background-color: inherit;

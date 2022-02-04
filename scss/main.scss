@@ -72,6 +72,33 @@ header {
   }
 }
 
+.tagList {
+  display: flex;
+  &-container {
+    display: flex;
+    padding: 0;
+    &-item {
+      list-style: none;
+
+      margin-right: 1rem;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 1rem;
+      color: white;
+      border-radius: 0.3rem;
+    }
+    &-item-ingredient {
+      background-color: #ed6454;
+    }
+    &-item-appliance {
+      background-color: #68d9a4;
+    }
+    &-item-ustensile {
+      background-color: #3282f7;
+    }
+  }
+}
+
 .ingredient-list {
   position: absolute;
   background-color: inherit;

@@ -4,24 +4,23 @@ export class ButtonListFactory {
   constructor(name, listOfTags) {
     this.name = name;
     this.listOfTags = listOfTags;
-    // this.allIngredients = [];
-    // this.allAppliances = [];
-    // this.allUstensils = [];
+
     this.allElements = [];
 
     //CALL METHODS
     this.addTagstoDropDown();
     // this.deleteDuplicateTags();
+    this.deleteDuplicateTags();
+    //ne marche pas
 
     this.generateItemsListInDOM(this.allElements);
     // this.generateItemsListInDOM(this.allIngredients);
     // this.generateItemsListInDOM(this.allAppliances);
     // this.generateItemsListInDOM(this.allUstensils);
-
-    console.log(this.allElements);
   }
   addTagstoDropDown() {
     const self = this;
+    console.log(self);
     data.forEach((recipe) => {
       if (typeof recipe[self.name] === "string") {
         if (!self.allElements.includes(recipe[self.name])) {
@@ -55,9 +54,10 @@ export class ButtonListFactory {
   }
 
   deleteDuplicateTags() {
-    this.allIngredients = Array.from(new Set(this.allIngredients));
-    this.allAppliances = Array.from(new Set(this.allAppliances));
-    this.allUstensils = Array.from(new Set(this.allUstensils));
+    // this.allIngredients = Array.from(new Set(this.allIngredients));
+    // this.allAppliances = Array.from(new Set(this.allAppliances));
+    // this.allUstensils = Array.from(new Set(this.allUstensils));
+    this.allElements = Array.from(new Set(this.allElements));
   }
 
   generateItemsListInDOM(array) {
