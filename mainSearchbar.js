@@ -8,7 +8,7 @@ export class MainSearchbar {
     searchBar.addEventListener("keyup", (e) => {
       e.preventDefault();
       const searchString = e.target.value.toLowerCase();
-      console.log(searchString);
+      // console.log(searchString);
       const filteredRecipes = listRecipe.filter((recipe) => {
         return (
           recipe.name.toLowerCase().includes(searchString) ||

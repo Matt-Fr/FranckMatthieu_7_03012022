@@ -41,10 +41,44 @@ ingredients.sort(function (a, b) {
   return a === b ? 0 : a < b ? -1 : 1;
 });
 
-ingredients.forEach((ing) => {
-  const item = `<li>${ing}</li>`;
-  ingredientList.innerHTML += item;
+const displayIngredients = (allIngredient) => {
+  allIngredient.forEach((ing) => {
+    const item = `<li class="tagsIngredient" id=${ing}>${ing}</li>`;
+    ingredientList.innerHTML += item;
+  });
+};
+
+displayIngredients(ingredients);
+
+const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
+const filterArray = [];
+const tagsIngredient = document.querySelectorAll(".tagList-container-item");
+
+const tagListIngredientContainer = document.querySelector(
+  ".tagList-container-ingredient"
+);
+console.log(tagListIngredientContainer);
+allTagsIngredients.forEach((singleTag) => {
+  singleTag.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(singleTag);
+    tagListIngredientContainer.innerHTML += `<li class="tagList-container-item tagList-container-item-ingredient">
+        ${singleTag.id}<span class="far fa-times-circle"></span>
+      </li>`;
+    filterArray.push(singleTag.id);
+    console.log(filterArray);
+  });
 });
+
+function click() {
+  tagsIngredient.forEach((tag) => {
+    tag.addEventListener("click", (e) => {
+      e.preventDefault();
+      tag.style.display = "none";
+    });
+  });
+}
+click();
 
 data.forEach((oneRecipe) => {
   const recipe2 = new Recipe(oneRecipe);
@@ -79,3 +113,41 @@ ustensiles.forEach((ustensil) => {
   const item = `<li>${ustensil}</li>`;
   ustensilList.innerHTML += item;
 });
+
+// const searchbarIngredient = () => {
+//   const searchbar = document.querySelector(".ingredient-input");
+//   console.log(searchbar);
+//   searchbar.addEventListener("keyup", (e) => {
+//     e.preventDefault();
+//     const searchString = e.target.value.toLowerCase();
+//     console.log(searchString);
+//     const filteredIng = ingredients.filter((ingredient) => {
+//       return ingredient.toLowerCase().includes(searchString);
+//     });
+//     displayIngredients(filteredIng);
+//   });
+// };
+
+// searchbarIngredient();
+
+// export class MainSearchbar {
+//   constructor() {
+//     let listRecipe = data;
+//     this.searchBar = document.getElementById("searchBar");
+//     searchBar.addEventListener("keyup", (e) => {
+//       e.preventDefault();
+//       const searchString = e.target.value.toLowerCase();
+//       console.log(searchString);
+//       const filteredRecipes = listRecipe.filter((recipe) => {
+//         return (
+//           recipe.name.toLowerCase().includes(searchString) ||
+//           recipe.appliance.toLowerCase().includes(searchString) ||
+//           recipe.ingredients.find((el) =>
+//             el.ingredient.toLowerCase().includes(searchString)
+//           )
+//         );
+//       });
+//       new RecipesManager(filteredRecipes);
+//     });
+//   }
+// }
