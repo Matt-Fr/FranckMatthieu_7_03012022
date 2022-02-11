@@ -30,14 +30,28 @@ export class Recipe {
     return ingredients;
   }
 
-  isMatchingIngredient(ingredient) {
-    const isMatchingIngredient = this.ingredients
-      .toLowerCase()
-      .includes(ingredient.toLowerCase());
+  isMatchingIngredient(ingredients) {
+    let isMatchingIngredient = true;
+    // for (let index = 0; index < ingredients.length; index++) {
+    //   const ing = ingredients[index];
+    //   isMatchingIngredient =
+    //     !!this.ingredients.find(
+    //       (i) => i.ingredient.toLowerCase() === ing.toLowerCase()
+    //     ) && isMatchingIngredient;
+    // }
+    ingredients.forEach((ing) => {
+      console.log(this.ingredients.map((i) => i.ingredient.toLowerCase()));
+      console.log(ing.toLowerCase());
+      isMatchingIngredient =
+        !!this.ingredients.find(
+          (i) => i.ingredient.toLowerCase() === ing.toLowerCase()
+        ) && isMatchingIngredient;
+    });
+
     return isMatchingIngredient;
   }
 
-  isMatchingAllFilters(ingredient) {
-    return this.isMatchingIngredient(ingredient);
+  isMatchingAllFilters(ingredients) {
+    return this.isMatchingIngredient(ingredients);
   }
 }

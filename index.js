@@ -44,7 +44,7 @@ ingredients.sort(function (a, b) {
 //créer les éléments dans la liste
 const displayIngredients = (allIngredient) => {
   allIngredient.forEach((ing) => {
-    const item = `<li class="tagsIngredient" id=${ing}>${ing}</li>`;
+    const item = `<li class="tagsIngredient" data-id="${ing}">${ing}</li>`;
     ingredientList.innerHTML += item;
   });
 };
@@ -86,7 +86,7 @@ ustensiles.forEach((ustensil) => {
 });
 
 const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
-const filterArray = [];
+let filterArray = [];
 const tagsIngredient = document.querySelectorAll(".tagList-container-item");
 
 const tagListIngredientContainer = document.querySelector(
@@ -94,13 +94,23 @@ const tagListIngredientContainer = document.querySelector(
 );
 
 allTagsIngredients.forEach((singleTag) => {
+  const tagId = singleTag.getAttribute("data-id");
   singleTag.addEventListener("click", (e) => {
     e.preventDefault();
+    const tagHtml = document.createElement("li");
+    tagHtml.classList.add("tagList-container-item");
+    tagHtml.classList.add("tagList-container-item-ingredient");
+    tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
+    tagHtml.addEventListener("click", (e) => {
+      filterArray = filterArray.filter((ing) => ing !== tagId);
+      console.log(filterArray);
+      filtersRecipe();
+      tagListIngredientContainer.removeChild(tagHtml);
+    });
 
-    tagListIngredientContainer.innerHTML += `<li class="tagList-container-item tagList-container-item-ingredient">
-        ${singleTag.id}<span class="far fa-times-circle"></span>
-      </li>`;
-    filterArray.push(singleTag.id);
+    tagListIngredientContainer.appendChild(tagHtml);
+    filterArray.push(tagId);
+    filtersRecipe();
     console.log(filterArray);
   });
 });
@@ -165,7 +175,7 @@ const filtersRecipe = () => {
   const filters = filterArray;
   console.log(filters);
   const matchingRecipes = recipes.filter((recipe) => {
-    recipe.isMatchingAllFilters(filters);
+    return recipe.isMatchingAllFilters(filters);
   });
   console.log(matchingRecipes);
 };
