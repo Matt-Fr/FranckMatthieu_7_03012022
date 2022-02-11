@@ -30,13 +30,14 @@ export class Recipe {
     return ingredients;
   }
 
-  exportApp() {
-    const appliances = [];
-    this.appliance.forEach((app) => {
-      if (!appliances.includes(app)) {
-        appliances.push(app);
-      }
-    });
-    return appliances;
+  isMatchingIngredient(ingredient) {
+    const isMatchingIngredient = this.ingredients
+      .toLowerCase()
+      .includes(ingredient.toLowerCase());
+    return isMatchingIngredient;
+  }
+
+  isMatchingAllFilters(ingredient) {
+    return this.isMatchingIngredient(ingredient);
   }
 }

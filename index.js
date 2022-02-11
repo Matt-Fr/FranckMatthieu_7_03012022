@@ -41,6 +41,7 @@ ingredients.sort(function (a, b) {
   return a === b ? 0 : a < b ? -1 : 1;
 });
 
+//créer les éléments dans la liste
 const displayIngredients = (allIngredient) => {
   allIngredient.forEach((ing) => {
     const item = `<li class="tagsIngredient" id=${ing}>${ing}</li>`;
@@ -49,36 +50,6 @@ const displayIngredients = (allIngredient) => {
 };
 
 displayIngredients(ingredients);
-
-const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
-const filterArray = [];
-const tagsIngredient = document.querySelectorAll(".tagList-container-item");
-
-const tagListIngredientContainer = document.querySelector(
-  ".tagList-container-ingredient"
-);
-console.log(tagListIngredientContainer);
-allTagsIngredients.forEach((singleTag) => {
-  singleTag.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log(singleTag);
-    tagListIngredientContainer.innerHTML += `<li class="tagList-container-item tagList-container-item-ingredient">
-        ${singleTag.id}<span class="far fa-times-circle"></span>
-      </li>`;
-    filterArray.push(singleTag.id);
-    console.log(filterArray);
-  });
-});
-
-function click() {
-  tagsIngredient.forEach((tag) => {
-    tag.addEventListener("click", (e) => {
-      e.preventDefault();
-      tag.style.display = "none";
-    });
-  });
-}
-click();
 
 data.forEach((oneRecipe) => {
   const recipe2 = new Recipe(oneRecipe);
@@ -113,6 +84,37 @@ ustensiles.forEach((ustensil) => {
   const item = `<li>${ustensil}</li>`;
   ustensilList.innerHTML += item;
 });
+
+const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
+const filterArray = [];
+const tagsIngredient = document.querySelectorAll(".tagList-container-item");
+
+const tagListIngredientContainer = document.querySelector(
+  ".tagList-container-ingredient"
+);
+
+allTagsIngredients.forEach((singleTag) => {
+  singleTag.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    tagListIngredientContainer.innerHTML += `<li class="tagList-container-item tagList-container-item-ingredient">
+        ${singleTag.id}<span class="far fa-times-circle"></span>
+      </li>`;
+    filterArray.push(singleTag.id);
+    console.log(filterArray);
+  });
+});
+
+//ne marche pas pour les nouveaux tags
+function removeTags() {
+  tagsIngredient.forEach((tag) => {
+    tag.addEventListener("click", (e) => {
+      e.preventDefault();
+      tag.style.display = "none";
+    });
+  });
+}
+removeTags();
 
 // const searchbarIngredient = () => {
 //   const searchbar = document.querySelector(".ingredient-input");
@@ -151,3 +153,21 @@ ustensiles.forEach((ustensil) => {
 //     });
 //   }
 // }
+
+data.forEach((oneRecipe) => {
+  const recipe = new Recipe(oneRecipe);
+
+  recipes.push(recipe);
+});
+console.log(recipes);
+
+const filtersRecipe = () => {
+  const filters = filterArray;
+  console.log(filters);
+  const matchingRecipes = recipes.filter((recipe) => {
+    recipe.isMatchingAllFilters(filters);
+  });
+  console.log(matchingRecipes);
+};
+
+filtersRecipe();

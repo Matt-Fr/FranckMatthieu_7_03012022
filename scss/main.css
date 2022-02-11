@@ -166,6 +166,10 @@ header {
   padding: 1rem;
 }
 
+.tagsIngredient {
+  cursor: pointer;
+}
+
 .ingredient-list li,
 .appareil-list li,
 .ustensiles-list li {
