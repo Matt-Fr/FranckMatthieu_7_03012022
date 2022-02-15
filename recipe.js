@@ -40,8 +40,8 @@ export class Recipe {
     //     ) && isMatchingIngredient;
     // }
     ingredients.forEach((ing) => {
-      console.log(this.ingredients.map((i) => i.ingredient.toLowerCase()));
-      console.log(ing.toLowerCase());
+      // console.log(this.ingredients.map((i) => i.ingredient.toLowerCase()));
+      // console.log(ing.toLowerCase());
       isMatchingIngredient =
         !!this.ingredients.find(
           (i) => i.ingredient.toLowerCase() === ing.toLowerCase()

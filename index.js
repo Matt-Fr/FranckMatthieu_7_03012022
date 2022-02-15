@@ -82,17 +82,20 @@ const displayIngredients = () => {
 displayIngredients();
 
 //probablement les inclures dans des fonctions pour obtenir un filterustensiles en parametre
-recipesElements.ustensiles.forEach((ustensil) => {
-  const item = `<li>${ustensil}</li>`;
-  ustensilList.innerHTML += item;
-});
 
 recipesElements.appliances.forEach((appliance) => {
-  const item = `<li>${appliance}</li>`;
+  const item = `<li class="tagsAppliances" data-id="${appliance}">${appliance}</li>`;
   appareilList.innerHTML += item;
 });
 
+recipesElements.ustensiles.forEach((ustensil) => {
+  const item = `<li class="tagsUstensiles" data-id="${ustensil}">${ustensil}</li>`;
+  ustensilList.innerHTML += item;
+});
+
 const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
+const allTagsAppliances = document.querySelectorAll(".tagsAppliances");
+const allTagsUstensiles = document.querySelectorAll(".tagsUstensiles");
 let filterArray = [];
 const tagsIngredient = document.querySelectorAll(".tagList-container-item");
 
@@ -100,27 +103,62 @@ const tagListIngredientContainer = document.querySelector(
   ".tagList-container-ingredient"
 );
 
-allTagsIngredients.forEach((singleTag) => {
-  const tagId = singleTag.getAttribute("data-id");
-  singleTag.addEventListener("click", (e) => {
-    e.preventDefault();
-    const tagHtml = document.createElement("li");
-    tagHtml.classList.add("tagList-container-item");
-    tagHtml.classList.add("tagList-container-item-ingredient");
-    tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
-    tagHtml.addEventListener("click", (e) => {
-      filterArray = filterArray.filter((ing) => ing !== tagId);
-      // console.log(filterArray);
-      filtersRecipe();
-      tagListIngredientContainer.removeChild(tagHtml);
-    });
+const tagListApplianceContainer = document.querySelector(
+  ".tagList-container-appliance"
+);
 
-    tagListIngredientContainer.appendChild(tagHtml);
-    filterArray.push(tagId);
-    filtersRecipe();
-    // console.log(filterArray);
+const tagListUstensilContainer = document.querySelector(
+  ".tagList-container-ustensile"
+);
+
+// allTagsAppliances.forEach((singleTag) => {
+//   const tagId = singleTag.getAttribute("data-id");
+//   singleTag.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     const tagHtml = document.createElement("li");
+//     tagHtml.classList.add("tagList-container-item");
+//     tagHtml.classList.add("tagList-container-item-appliance");
+//     tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
+//     tagHtml.addEventListener("click", (e) => {
+//       filterArray = filterArray.filter((filter) => filter !== tagId);
+//       // console.log(filterArray);
+//       filtersRecipe();
+//       tagListIngredientContainer.removeChild(tagHtml);
+//     });
+
+//     tagListIngredientContainer.appendChild(tagHtml);
+//     filterArray.push(tagId);
+//     filtersRecipe();
+//     // console.log(filterArray);
+//   });
+// });
+
+const addAndDeleteFilter = (allTagsCategory, type) =>
+  allTagsCategory.forEach((singleTag) => {
+    const tagId = singleTag.getAttribute("data-id");
+    singleTag.addEventListener("click", (e) => {
+      e.preventDefault();
+      const tagHtml = document.createElement("li");
+      tagHtml.classList.add("tagList-container-item");
+      tagHtml.classList.add(`tagList-container-item-${type}`);
+      tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
+      tagHtml.addEventListener("click", (e) => {
+        filterArray = filterArray.filter((ing) => ing !== tagId);
+        // console.log(filterArray);
+        filtersRecipe();
+        tagListIngredientContainer.removeChild(tagHtml);
+      });
+
+      tagListIngredientContainer.appendChild(tagHtml);
+      filterArray.push(tagId);
+      filtersRecipe();
+      // console.log(filterArray);
+    });
   });
-});
+
+addAndDeleteFilter(allTagsIngredients, "ingredient");
+addAndDeleteFilter(allTagsAppliances, "appliance");
+addAndDeleteFilter(allTagsUstensiles, "ustensile");
 
 //ne marche pas pour les nouveaux tags
 function removeTags() {
