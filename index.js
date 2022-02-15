@@ -24,65 +24,72 @@ const ingredients = [];
 const appliances = [];
 const ustensiles = [];
 
-data.forEach((oneRecipe) => {
-  const recipe = new Recipe(oneRecipe);
+const recipesElements = data.reduce(
+  (total, cur) => {
+    cur.ingredients.forEach((ing) => {
+      if (!total.ingredients.includes(ing.ingredient)) {
+        total.ingredients.push(ing.ingredient);
+      }
+    });
+    if (!total.appliances.includes(cur.appliance))
+      total.appliances.push(cur.appliance);
+    cur.ustensils.forEach((el) => {
+      if (!total.ustensiles.includes(el)) {
+        total.ustensiles.push(el);
+      }
+    });
+    total.ingredients.sort(function (a, b) {
+      return a === b ? 0 : a < b ? -1 : 1;
+    });
+    total.appliances.sort(function (a, b) {
+      return a === b ? 0 : a < b ? -1 : 1;
+    });
+    total.ustensiles.sort(function (a, b) {
+      return a === b ? 0 : a < b ? -1 : 1;
+    });
+    return total;
+  },
+  { ingredients: [], appliances: [], ustensiles: [] }
+);
 
-  //   recipes.push(recipe); a voir plus tard pour le filtre
-  //on applique exportIng à recipe (=toutes les recettes en objet)
-  recipe.exportIng().forEach((ing) => {
-    if (!ingredients.includes(ing)) {
-      ingredients.push(ing);
-    }
-  });
-});
+console.log(recipesElements);
 
-//trier le tableau
-ingredients.sort(function (a, b) {
-  return a === b ? 0 : a < b ? -1 : 1;
-});
+// data.forEach((oneRecipe) => {
+//   const recipe = new Recipe(oneRecipe);
 
-//créer les éléments dans la liste
-const displayIngredients = (allIngredient) => {
-  allIngredient.forEach((ing) => {
+//   //   recipes.push(recipe); a voir plus tard pour le filtre
+//   //on applique exportIng à recipe (=toutes les recettes en objet)
+//   recipe.exportIng().forEach((ing) => {
+//     if (!ingredients.includes(ing)) {
+//       ingredients.push(ing);
+//     }
+//   });
+// });
+
+// //trier le tableau
+// ingredients.sort(function (a, b) {
+//   return a === b ? 0 : a < b ? -1 : 1;
+// });
+
+// //créer les éléments dans la liste
+const displayIngredients = () => {
+  recipesElements.ingredients.forEach((ing) => {
     const item = `<li class="tagsIngredient" data-id="${ing}">${ing}</li>`;
     ingredientList.innerHTML += item;
   });
 };
 
-displayIngredients(ingredients);
+displayIngredients();
 
-data.forEach((oneRecipe) => {
-  const recipe2 = new Recipe(oneRecipe);
-  if (!appliances.includes(recipe2.appliance)) {
-    appliances.push(recipe2.appliance);
-  }
-});
-
-appliances.sort(function (a, b) {
-  return a === b ? 0 : a < b ? -1 : 1;
-});
-
-appliances.forEach((appliance) => {
-  const item = `<li>${appliance}</li>`;
-  appareilList.innerHTML += item;
-});
-
-data.forEach((oneRecipe) => {
-  const recipe3 = new Recipe(oneRecipe);
-  recipe3.ustensils.forEach((ustensil) => {
-    if (!ustensiles.includes(ustensil)) {
-      ustensiles.push(ustensil);
-    }
-  });
-});
-
-ustensiles.sort(function (a, b) {
-  return a === b ? 0 : a < b ? -1 : 1;
-});
-
-ustensiles.forEach((ustensil) => {
+//probablement les inclures dans des fonctions pour obtenir un filterustensiles en parametre
+recipesElements.ustensiles.forEach((ustensil) => {
   const item = `<li>${ustensil}</li>`;
   ustensilList.innerHTML += item;
+});
+
+recipesElements.appliances.forEach((appliance) => {
+  const item = `<li>${appliance}</li>`;
+  appareilList.innerHTML += item;
 });
 
 const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
@@ -103,7 +110,7 @@ allTagsIngredients.forEach((singleTag) => {
     tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
     tagHtml.addEventListener("click", (e) => {
       filterArray = filterArray.filter((ing) => ing !== tagId);
-      console.log(filterArray);
+      // console.log(filterArray);
       filtersRecipe();
       tagListIngredientContainer.removeChild(tagHtml);
     });
@@ -111,7 +118,7 @@ allTagsIngredients.forEach((singleTag) => {
     tagListIngredientContainer.appendChild(tagHtml);
     filterArray.push(tagId);
     filtersRecipe();
-    console.log(filterArray);
+    // console.log(filterArray);
   });
 });
 
@@ -126,50 +133,12 @@ function removeTags() {
 }
 removeTags();
 
-// const searchbarIngredient = () => {
-//   const searchbar = document.querySelector(".ingredient-input");
-//   console.log(searchbar);
-//   searchbar.addEventListener("keyup", (e) => {
-//     e.preventDefault();
-//     const searchString = e.target.value.toLowerCase();
-//     console.log(searchString);
-//     const filteredIng = ingredients.filter((ingredient) => {
-//       return ingredient.toLowerCase().includes(searchString);
-//     });
-//     displayIngredients(filteredIng);
-//   });
-// };
-
-// searchbarIngredient();
-
-// export class MainSearchbar {
-//   constructor() {
-//     let listRecipe = data;
-//     this.searchBar = document.getElementById("searchBar");
-//     searchBar.addEventListener("keyup", (e) => {
-//       e.preventDefault();
-//       const searchString = e.target.value.toLowerCase();
-//       console.log(searchString);
-//       const filteredRecipes = listRecipe.filter((recipe) => {
-//         return (
-//           recipe.name.toLowerCase().includes(searchString) ||
-//           recipe.appliance.toLowerCase().includes(searchString) ||
-//           recipe.ingredients.find((el) =>
-//             el.ingredient.toLowerCase().includes(searchString)
-//           )
-//         );
-//       });
-//       new RecipesManager(filteredRecipes);
-//     });
-//   }
-// }
-
 data.forEach((oneRecipe) => {
   const recipe = new Recipe(oneRecipe);
 
   recipes.push(recipe);
 });
-console.log(recipes);
+// console.log(recipes);
 
 const filtersRecipe = () => {
   const filters = filterArray;
