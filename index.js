@@ -52,25 +52,6 @@ const recipesElements = data.reduce(
   { ingredients: [], appliances: [], ustensiles: [] }
 );
 
-console.log(recipesElements);
-
-// data.forEach((oneRecipe) => {
-//   const recipe = new Recipe(oneRecipe);
-
-//   //   recipes.push(recipe); a voir plus tard pour le filtre
-//   //on applique exportIng à recipe (=toutes les recettes en objet)
-//   recipe.exportIng().forEach((ing) => {
-//     if (!ingredients.includes(ing)) {
-//       ingredients.push(ing);
-//     }
-//   });
-// });
-
-// //trier le tableau
-// ingredients.sort(function (a, b) {
-//   return a === b ? 0 : a < b ? -1 : 1;
-// });
-
 // //créer les éléments dans la liste
 const displayIngredients = () => {
   recipesElements.ingredients.forEach((ing) => {
@@ -111,28 +92,6 @@ const tagListUstensilContainer = document.querySelector(
   ".tagList-container-ustensile"
 );
 
-// allTagsAppliances.forEach((singleTag) => {
-//   const tagId = singleTag.getAttribute("data-id");
-//   singleTag.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     const tagHtml = document.createElement("li");
-//     tagHtml.classList.add("tagList-container-item");
-//     tagHtml.classList.add("tagList-container-item-appliance");
-//     tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
-//     tagHtml.addEventListener("click", (e) => {
-//       filterArray = filterArray.filter((filter) => filter !== tagId);
-//       // console.log(filterArray);
-//       filtersRecipe();
-//       tagListIngredientContainer.removeChild(tagHtml);
-//     });
-
-//     tagListIngredientContainer.appendChild(tagHtml);
-//     filterArray.push(tagId);
-//     filtersRecipe();
-//     // console.log(filterArray);
-//   });
-// });
-
 const addAndDeleteFilter = (allTagsCategory, type) =>
   allTagsCategory.forEach((singleTag) => {
     const tagId = singleTag.getAttribute("data-id");
@@ -160,17 +119,6 @@ addAndDeleteFilter(allTagsIngredients, "ingredient");
 addAndDeleteFilter(allTagsAppliances, "appliance");
 addAndDeleteFilter(allTagsUstensiles, "ustensile");
 
-//ne marche pas pour les nouveaux tags
-function removeTags() {
-  tagsIngredient.forEach((tag) => {
-    tag.addEventListener("click", (e) => {
-      e.preventDefault();
-      tag.style.display = "none";
-    });
-  });
-}
-removeTags();
-
 data.forEach((oneRecipe) => {
   const recipe = new Recipe(oneRecipe);
 
@@ -185,6 +133,8 @@ const filtersRecipe = () => {
     return recipe.isMatchingAllFilters(filters);
   });
   console.log(matchingRecipes);
+  new RecipesManager(matchingRecipes);
+  //on va ajouter le display recipes ici
 };
 
 filtersRecipe();

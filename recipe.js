@@ -5,6 +5,7 @@ export class Recipe {
       ingredients: [],
       name: "",
       time: null,
+      description: "",
       servings: null,
       appliance: "",
       ustensils: "",
@@ -14,6 +15,7 @@ export class Recipe {
     this.id = data.id;
     this.appliance = data?.appliance || "";
     this.time = data.time;
+    this.description = data?.description || "";
     this.servings = data.servings;
     this.ingredients = data?.ingredients || [];
     this.ustensils = data?.ustensils || [];
@@ -30,18 +32,10 @@ export class Recipe {
     return ingredients;
   }
 
-  isMatchingIngredient(ingredients) {
+  isMatchingIngredient(filteringredients) {
     let isMatchingIngredient = true;
-    // for (let index = 0; index < ingredients.length; index++) {
-    //   const ing = ingredients[index];
-    //   isMatchingIngredient =
-    //     !!this.ingredients.find(
-    //       (i) => i.ingredient.toLowerCase() === ing.toLowerCase()
-    //     ) && isMatchingIngredient;
-    // }
-    ingredients.forEach((ing) => {
-      // console.log(this.ingredients.map((i) => i.ingredient.toLowerCase()));
-      // console.log(ing.toLowerCase());
+
+    filteringredients.forEach((ing) => {
       isMatchingIngredient =
         !!this.ingredients.find(
           (i) => i.ingredient.toLowerCase() === ing.toLowerCase()
@@ -51,7 +45,32 @@ export class Recipe {
     return isMatchingIngredient;
   }
 
-  isMatchingAllFilters(ingredients) {
-    return this.isMatchingIngredient(ingredients);
+  isMatchingAppliance(filterAppliances) {
+    let isMatchingAppliance = true;
+
+    filterAppliances.forEach((app) => {
+      !!this.appliance.find((a) => {
+        a.toLowerCase() === app.toLowerCase();
+      }) && isMatchingAppliance;
+    });
+
+    return isMatchingAppliance;
+  }
+
+  isMatchingUstensil(filterUstensils) {
+    let isMatchingUstensil = true;
+    filterUstensils.forEach((ustensil) => {
+      isMatchingUstensil =
+        !!this.ustensils.find((u) => {
+          u.toLowerCase() === ustensil.toLowerCase();
+        }) && isMatchingUstensil;
+    });
+    return isMatchingUstensil;
+  }
+
+  isMatchingAllFilters(filterElements) {
+    return this.isMatchingIngredient(filterElements);
+    // &&
+    // this.isMatchingUstensil(filterElements)
   }
 }
