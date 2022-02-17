@@ -15,7 +15,8 @@ export class MainSearchbar {
           recipe.appliance.toLowerCase().includes(searchString) ||
           recipe.ingredients.find((el) =>
             el.ingredient.toLowerCase().includes(searchString)
-          )
+          ) ||
+          recipe.ustensils.find((el) => el.toLowerCase().includes(searchString))
         );
       });
       new RecipesManager(filteredRecipes);
