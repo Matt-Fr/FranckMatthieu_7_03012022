@@ -38,19 +38,21 @@ const recipesElements = data.reduce(
         total.ustensiles.push(el);
       }
     });
-    total.ingredients.sort(function (a, b) {
-      return a === b ? 0 : a < b ? -1 : 1;
-    });
-    total.appliances.sort(function (a, b) {
-      return a === b ? 0 : a < b ? -1 : 1;
-    });
-    total.ustensiles.sort(function (a, b) {
-      return a === b ? 0 : a < b ? -1 : 1;
-    });
+
     return total;
   },
   { ingredients: [], appliances: [], ustensiles: [] }
 );
+
+recipesElements.ingredients.sort(function (a, b) {
+  return a === b ? 0 : a < b ? -1 : 1;
+});
+recipesElements.appliances.sort(function (a, b) {
+  return a === b ? 0 : a < b ? -1 : 1;
+});
+recipesElements.ustensiles.sort(function (a, b) {
+  return a === b ? 0 : a < b ? -1 : 1;
+});
 
 // //créer les éléments dans la liste
 const displayIngredients = () => {
@@ -134,7 +136,6 @@ const filtersRecipe = () => {
   });
   console.log(matchingRecipes);
   new RecipesManager(matchingRecipes);
-  //on va ajouter le display recipes ici
 };
 
 filtersRecipe();
