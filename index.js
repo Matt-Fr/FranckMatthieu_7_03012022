@@ -79,22 +79,16 @@ recipesElements.ustensiles.forEach((ustensil) => {
 const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
 const allTagsAppliances = document.querySelectorAll(".tagsAppliances");
 const allTagsUstensiles = document.querySelectorAll(".tagsUstensiles");
-let filterArray = [];
+let ingredientFilter = [];
+let applianceFilter = [];
+let ustensileFilter = [];
 const tagsIngredient = document.querySelectorAll(".tagList-container-item");
 
-const tagListIngredientContainer = document.querySelector(
+const tagListContainer = document.querySelector(
   ".tagList-container-ingredient"
 );
 
-const tagListApplianceContainer = document.querySelector(
-  ".tagList-container-appliance"
-);
-
-const tagListUstensilContainer = document.querySelector(
-  ".tagList-container-ustensile"
-);
-
-const addAndDeleteFilter = (allTagsCategory, type) =>
+const addAndDeleteFilter = (allTagsCategory, type, array) =>
   allTagsCategory.forEach((singleTag) => {
     const tagId = singleTag.getAttribute("data-id");
     singleTag.addEventListener("click", (e) => {
@@ -103,23 +97,21 @@ const addAndDeleteFilter = (allTagsCategory, type) =>
       tagHtml.classList.add("tagList-container-item");
       tagHtml.classList.add(`tagList-container-item-${type}`);
       tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
-      tagHtml.addEventListener("click", (e) => {
-        filterArray = filterArray.filter((ing) => ing !== tagId);
-        // console.log(filterArray);
+      tagHtml.addEventListener("click", () => {
+        array = array.filter((el) => el !== tagId);
         filtersRecipe();
-        tagListIngredientContainer.removeChild(tagHtml);
+        tagListContainer.removeChild(tagHtml);
       });
 
-      tagListIngredientContainer.appendChild(tagHtml);
-      filterArray.push(tagId);
+      tagListContainer.appendChild(tagHtml);
+      array.push(tagId);
       filtersRecipe();
-      // console.log(filterArray);
     });
   });
 
-addAndDeleteFilter(allTagsIngredients, "ingredient");
-addAndDeleteFilter(allTagsAppliances, "appliance");
-addAndDeleteFilter(allTagsUstensiles, "ustensile");
+addAndDeleteFilter(allTagsIngredients, "ingredient", ingredientFilter);
+addAndDeleteFilter(allTagsAppliances, "appliance", applianceFilter);
+addAndDeleteFilter(allTagsUstensiles, "ustensile", ustensileFilter);
 
 data.forEach((oneRecipe) => {
   const recipe = new Recipe(oneRecipe);
@@ -129,10 +121,15 @@ data.forEach((oneRecipe) => {
 // console.log(recipes);
 
 const filtersRecipe = () => {
-  const filters = filterArray;
-  console.log(filters);
+  console.log(ingredientFilter);
+  console.log(applianceFilter);
+  console.log(ustensileFilter);
   const matchingRecipes = recipes.filter((recipe) => {
-    return recipe.isMatchingAllFilters(filters);
+    return recipe.isMatchingAllFilters(
+      ingredientFilter,
+      applianceFilter,
+      ustensileFilter
+    );
   });
   console.log(matchingRecipes);
   new RecipesManager(matchingRecipes);

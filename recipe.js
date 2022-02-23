@@ -34,9 +34,8 @@ export class Recipe {
 
   isMatchingIngredient(filteringredients) {
     let isMatchingIngredient = true;
-
+    console.log(this.appliance);
     if (filteringredients && filteringredients.length) {
-      console.log(this.ustensils);
       filteringredients.forEach((ing) => {
         isMatchingIngredient =
           !!this.ingredients.find(
@@ -50,12 +49,14 @@ export class Recipe {
 
   isMatchingAppliance(filterAppliances) {
     let isMatchingAppliance = true;
-
-    filterAppliances.forEach((app) => {
-      !!this.appliance.find((a) => {
-        a.toLowerCase() === app.toLowerCase();
-      }) && isMatchingAppliance;
-    });
+    if (filterAppliances && filterAppliances.length) {
+      filterAppliances.forEach((app) => {
+        isMatchingAppliance =
+          !!this.appliance.find((a) => {
+            a.toLowerCase() === app.toLowerCase();
+          }) && isMatchingAppliance;
+      });
+    }
 
     return isMatchingAppliance;
   }
@@ -63,13 +64,11 @@ export class Recipe {
   isMatchingUstensil(filterUstensils) {
     let isMatchingUstensil = true;
     if (filterUstensils && filterUstensils.length) {
-      console.log(filterUstensils);
       filterUstensils.forEach((ustensil) => {
         isMatchingUstensil =
           !!this.ustensils.find(
             (u) => u.toLowerCase() === ustensil.toLowerCase()
           ) && isMatchingUstensil;
-        console.log(isMatchingUstensil);
       });
     }
 
@@ -78,10 +77,11 @@ export class Recipe {
 
   //4 parametre méthodes avec mainsearch, rajouter 3 array et faire fonctionner les filtres.
 
-  isMatchingAllFilters(filterElements) {
+  isMatchingAllFilters(filteringredients, filterAppliances, filterUstensils) {
     return (
-      this.isMatchingIngredient(filterElements) &&
-      this.isMatchingUstensil(filterElements)
+      this.isMatchingIngredient(filteringredients) &&
+      this.isMatchingAppliance(filterAppliances) &&
+      this.isMatchingUstensil(filterUstensils)
     );
   }
 }
