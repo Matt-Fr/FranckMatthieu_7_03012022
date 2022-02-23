@@ -4,6 +4,7 @@ import { RecipesManager } from "./displayRecipes.js";
 import { MainSearchbar } from "./mainSearchbar.js";
 import { Recipe } from "./recipe.js";
 import { displayTagsInDropdown } from "./displayTagsinDropdown.js";
+import { AddAndDeleteFilters } from "./addAndDeletefilter.js";
 
 new DropdownManager();
 
@@ -20,34 +21,9 @@ let ingredientFilter = [];
 let applianceFilter = [];
 let ustensileFilter = [];
 
-const tagListContainer = document.querySelector(
-  ".tagList-container-ingredient"
-);
-
-const addAndDeleteFilter = (allTagsCategory, type, array) =>
-  allTagsCategory.forEach((singleTag) => {
-    const tagId = singleTag.getAttribute("data-id");
-    singleTag.addEventListener("click", (e) => {
-      e.preventDefault();
-      const tagHtml = document.createElement("li");
-      tagHtml.classList.add("tagList-container-item");
-      tagHtml.classList.add(`tagList-container-item-${type}`);
-      tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
-      tagHtml.addEventListener("click", () => {
-        array = array.filter((el) => el !== tagId);
-        filtersRecipe();
-        tagListContainer.removeChild(tagHtml);
-      });
-
-      tagListContainer.appendChild(tagHtml);
-      array.push(tagId);
-      filtersRecipe();
-    });
-  });
-
-addAndDeleteFilter(allTagsIngredients, "ingredient", ingredientFilter);
-addAndDeleteFilter(allTagsAppliances, "appliance", applianceFilter);
-addAndDeleteFilter(allTagsUstensiles, "ustensile", ustensileFilter);
+new AddAndDeleteFilters(allTagsIngredients, "ingredient", ingredientFilter);
+new AddAndDeleteFilters(allTagsAppliances, "appliance", applianceFilter);
+new AddAndDeleteFilters(allTagsUstensiles, "ustensile", ustensileFilter);
 
 const recipes = [];
 
@@ -56,7 +32,7 @@ data.forEach((oneRecipe) => {
   recipes.push(recipe);
 });
 
-const filtersRecipe = () => {
+export const filtersRecipe = () => {
   console.log(ingredientFilter);
   console.log(applianceFilter);
   console.log(ustensileFilter);

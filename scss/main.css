@@ -166,7 +166,9 @@ header {
   padding: 1rem;
 }
 
-.tagsIngredient {
+.tagsIngredient,
+.tagsAppliances,
+.tagsUstensiles {
   cursor: pointer;
 }
 
