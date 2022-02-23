@@ -19,7 +19,6 @@ const allTagsUstensiles = document.querySelectorAll(".tagsUstensiles");
 let ingredientFilter = [];
 let applianceFilter = [];
 let ustensileFilter = [];
-const tagsIngredient = document.querySelectorAll(".tagList-container-item");
 
 const tagListContainer = document.querySelector(
   ".tagList-container-ingredient"

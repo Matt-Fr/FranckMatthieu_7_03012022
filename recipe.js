@@ -34,7 +34,6 @@ export class Recipe {
 
   isMatchingIngredient(filteringredients) {
     let isMatchingIngredient = true;
-    console.log(this.appliance);
     if (filteringredients && filteringredients.length) {
       filteringredients.forEach((ing) => {
         isMatchingIngredient =
