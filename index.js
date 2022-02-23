@@ -2,7 +2,6 @@ import { DropdownManager } from "./dropDown.js";
 import data from "./data.js";
 import { RecipesManager } from "./displayRecipes.js";
 import { MainSearchbar } from "./mainSearchbar.js";
-import { ButtonListFactory } from "./btnManager.js";
 import { Recipe } from "./recipe.js";
 
 const ingredientList = document.querySelector(".ingredient-list");
@@ -18,11 +17,6 @@ new MainSearchbar();
 // new ButtonListFactory("ingredients", ingredientList);
 // new ButtonListFactory("appliance", appareilList);
 // new ButtonListFactory("ustensils", ustensilList);
-
-const recipes = [];
-const ingredients = [];
-const appliances = [];
-const ustensiles = [];
 
 const recipesElements = data.reduce(
   (total, cur) => {
@@ -113,12 +107,12 @@ addAndDeleteFilter(allTagsIngredients, "ingredient", ingredientFilter);
 addAndDeleteFilter(allTagsAppliances, "appliance", applianceFilter);
 addAndDeleteFilter(allTagsUstensiles, "ustensile", ustensileFilter);
 
+const recipes = [];
+
 data.forEach((oneRecipe) => {
   const recipe = new Recipe(oneRecipe);
-
   recipes.push(recipe);
 });
-// console.log(recipes);
 
 const filtersRecipe = () => {
   console.log(ingredientFilter);
