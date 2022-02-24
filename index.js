@@ -3,14 +3,14 @@ import data from "./data.js";
 import { RecipesManager } from "./displayRecipes.js";
 import { MainSearchbar } from "./mainSearchbar.js";
 import { Recipe } from "./recipe.js";
-import { displayTagsInDropdown } from "./displayTagsinDropdown.js";
+import { DisplayTagsInDropdown } from "./displayTagsinDropdown.js";
 import { AddAndDeleteFilters } from "./addAndDeletefilter.js";
 
 new DropdownManager();
 
 new RecipesManager(data);
 
-displayTagsInDropdown();
+new DisplayTagsInDropdown();
 
 const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
 const allTagsAppliances = document.querySelectorAll(".tagsAppliances");
