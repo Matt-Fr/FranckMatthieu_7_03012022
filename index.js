@@ -10,8 +10,6 @@ new DropdownManager();
 
 new RecipesManager(data);
 
-new MainSearchbar();
-
 displayTagsInDropdown();
 
 const allTagsIngredients = document.querySelectorAll(".tagsIngredient");
@@ -45,6 +43,7 @@ export const filtersRecipe = () => {
   });
   console.log(matchingRecipes);
   new RecipesManager(matchingRecipes);
+  new MainSearchbar(matchingRecipes);
 };
 
 filtersRecipe();
