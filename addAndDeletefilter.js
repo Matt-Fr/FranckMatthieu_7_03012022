@@ -1,13 +1,13 @@
 import { filtersRecipe } from "./index.js";
 
 export class AddAndDeleteFilters {
-  constructor(allTagsCategory, type, array) {
+  constructor(allTagsCategory, type, array, launchFilterRecipe) {
     this.allTagsCategory = allTagsCategory;
     this.type = type;
     this.array = array;
-    this.addAndDeleteFilter();
+    this.addAndDeleteFilter(launchFilterRecipe);
   }
-  addAndDeleteFilter() {
+  addAndDeleteFilter(launchFilterRecipe) {
     this.allTagsCategory.forEach((singleTag) => {
       const tagListContainer = document.querySelector(
         ".tagList-container-ingredient"
@@ -20,14 +20,17 @@ export class AddAndDeleteFilters {
         tagHtml.classList.add(`tagList-container-item-${this.type}`);
         tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
         tagHtml.addEventListener("click", () => {
+          console.log(this.array);
+          console.log(tagId);
           this.array = this.array.filter((el) => el !== tagId);
-          filtersRecipe();
+          console.log(this.array);
+          launchFilterRecipe(this.array);
           tagListContainer.removeChild(tagHtml);
         });
 
         tagListContainer.appendChild(tagHtml);
         this.array.push(tagId);
-        filtersRecipe();
+        launchFilterRecipe(this.array);
       });
     });
   }

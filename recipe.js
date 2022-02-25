@@ -52,9 +52,8 @@ export class Recipe {
     if (filterAppliances && filterAppliances.length) {
       filterAppliances.forEach((app) => {
         isMatchingAppliance =
-          !![this.appliance].find((a) => {
-            a.toLowerCase() === app.toLowerCase();
-          }) && isMatchingAppliance;
+          this.appliance.toLowerCase() === app.toLowerCase() &&
+          isMatchingAppliance;
       });
     }
 
