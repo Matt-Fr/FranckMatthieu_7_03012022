@@ -1,4 +1,4 @@
-export class RecipesManager {
+export class DisplayRecipes {
   constructor(data) {
     this.data = data;
     this.display();

@@ -1,6 +1,6 @@
 import { DropdownManager } from "./dropDown.js";
 import data from "./data.js";
-import { RecipesManager } from "./displayRecipes.js";
+import { DisplayRecipes } from "./displayRecipes.js";
 import { MainSearchbar } from "./mainSearchbar.js";
 import { Recipe } from "./recipe.js";
 import { DisplayTagsInDropdown } from "./displayTagsinDropdown.js";
@@ -8,7 +8,7 @@ import { AddAndDeleteFilters } from "./addAndDeletefilter.js";
 
 new DropdownManager();
 
-new RecipesManager(data);
+new DisplayRecipes(data);
 
 new DisplayTagsInDropdown();
 
@@ -42,8 +42,22 @@ export const filtersRecipe = () => {
     );
   });
   console.log(matchingRecipes);
-  new RecipesManager(matchingRecipes);
+  new DisplayRecipes(matchingRecipes);
   new MainSearchbar(matchingRecipes);
 };
 
 filtersRecipe();
+
+// const ingredientInput = document.querySelector(".ingredient-input");
+// const allIngTags = document.querySelectorAll(".tagsIngredient");
+// console.log([allIngTags]);
+// ingredientInput.addEventListener("keyup", (e) => {
+//   e.preventDefault();
+//   const searchString = e.target.value.toLowerCase();
+//   console.log(searchString);
+//   const filteredTags = [allIngTags].filter((tag) => {
+//     console.log(tag);
+//     return tag.outertoLowerCase().includes(searchString);
+//   });
+//   console.log(filteredTags);
+// });

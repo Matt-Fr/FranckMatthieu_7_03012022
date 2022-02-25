@@ -34,6 +34,7 @@ export class Recipe {
 
   isMatchingIngredient(filteringredients) {
     let isMatchingIngredient = true;
+
     if (filteringredients && filteringredients.length) {
       filteringredients.forEach((ing) => {
         isMatchingIngredient =
@@ -51,7 +52,7 @@ export class Recipe {
     if (filterAppliances && filterAppliances.length) {
       filterAppliances.forEach((app) => {
         isMatchingAppliance =
-          !!this.appliance.find((a) => {
+          !![this.appliance].find((a) => {
             a.toLowerCase() === app.toLowerCase();
           }) && isMatchingAppliance;
       });

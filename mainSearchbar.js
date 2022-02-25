@@ -1,4 +1,4 @@
-import { RecipesManager } from "./displayRecipes.js";
+import { DisplayRecipes } from "./displayRecipes.js";
 
 export class MainSearchbar {
   constructor(matchingRecipes) {
@@ -6,7 +6,6 @@ export class MainSearchbar {
     searchBar.addEventListener("keyup", (e) => {
       e.preventDefault();
       const searchString = e.target.value.toLowerCase();
-      // console.log(searchString);
       const filteredRecipes = matchingRecipes.filter((recipe) => {
         return (
           recipe.name.toLowerCase().includes(searchString) ||
@@ -17,7 +16,7 @@ export class MainSearchbar {
           recipe.ustensils.find((el) => el.toLowerCase().includes(searchString))
         );
       });
-      new RecipesManager(filteredRecipes);
+      new DisplayRecipes(filteredRecipes);
     });
   }
 }
