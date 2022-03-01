@@ -18,13 +18,33 @@ class Main {
     ingredientInput.addEventListener("keyup", this.tagSearch.bind(this));
     applianceInput.addEventListener("keyup", this.tagSearch.bind(this));
     ustensilInput.addEventListener("keyup", this.tagSearch.bind(this));
+    this.lists = document.querySelectorAll(".list");
+    this.listBtn = document.querySelectorAll(".researchFields-form-btn");
+    this.forms = document.querySelectorAll(".researchFields-form");
+    this.chevrons = document.querySelectorAll(".chevron");
+    this.listBtn.forEach((btn) => {
+      btn.addEventListener("click", this.chevronClick.bind(this));
+    });
   }
 
-  tagSearch(e) {
-    e.preventDefault();
-    const type = e.target.getAttribute("data-type");
-    this.searchTag[type] = e.target.value.toLowerCase();
-    this.displayTagsInDropdown();
+  chevronClick(e) {
+    const list = e.currentTarget.nextElementSibling;
+    const chevron = e.currentTarget.children[0];
+
+    this.chevrons.forEach((item) => {
+      if (item !== chevron) {
+        item.classList.remove("rotate");
+      }
+    });
+
+    this.lists.forEach((item) => {
+      if (item !== list) {
+        item.classList.remove("open");
+      }
+    });
+
+    chevron.classList.toggle("rotate");
+    list.classList.toggle("open");
   }
 
   extractTagsFromRecipes() {
@@ -84,11 +104,15 @@ class Main {
         ustensilList.innerHTML += item;
       });
   }
+  tagSearch(e) {
+    e.preventDefault();
+    const type = e.target.getAttribute("data-type");
+    this.searchTag[type] = e.target.value.toLowerCase();
+    this.displayTagsInDropdown();
+  }
 }
 
 new Main();
-
-new DropdownManager();
 
 new DisplayRecipes(data);
 
@@ -155,5 +179,3 @@ export const filtersRecipe = (
   new DisplayRecipes(matchingRecipes);
   new MainSearchbar(matchingRecipes);
 };
-
-filtersRecipe();
