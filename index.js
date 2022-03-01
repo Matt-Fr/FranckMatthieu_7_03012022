@@ -5,6 +5,8 @@ import { MainSearchbar } from "./mainSearchbar.js";
 import { Recipe } from "./recipe.js";
 import { AddAndDeleteFilters } from "./addAndDeletefilter.js";
 
+//créer template, voir jsfiddle, inclure les class dans le main, faire ust avec datatype, comprendre le bind this
+
 class Main {
   constructor() {
     this.searchTag = { ingredient: "", appliance: "", ustensil: "" };
@@ -12,8 +14,10 @@ class Main {
     this.displayTagsInDropdown();
     const ingredientInput = document.querySelector(".ingredient-input");
     const applianceInput = document.querySelector(".appareil-input");
+    const ustensilInput = document.querySelector(".ustensiles-input");
     ingredientInput.addEventListener("keyup", this.tagSearch.bind(this));
     applianceInput.addEventListener("keyup", this.tagSearch.bind(this));
+    ustensilInput.addEventListener("keyup", this.tagSearch.bind(this));
   }
 
   tagSearch(e) {
