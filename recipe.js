@@ -1,3 +1,5 @@
+import recipeTmpl from "./recipeTmpl.js";
+
 export class Recipe {
   constructor(
     data = {
@@ -77,10 +79,37 @@ export class Recipe {
   //4 parametre méthodes avec mainsearch, rajouter 3 array et faire fonctionner les filtres.
 
   isMatchingAllFilters(filteringredients, filterAppliances, filterUstensils) {
+    console.log(filteringredients);
+    console.log(filterAppliances);
+    console.log(filterUstensils);
     return (
       this.isMatchingIngredient(filteringredients) &&
       this.isMatchingAppliance(filterAppliances) &&
       this.isMatchingUstensil(filterUstensils)
     );
+  }
+
+  generateDomCard() {
+    const article = document.createElement("article");
+    article.classList.add("recipe");
+    article.innerHTML = recipeTmpl;
+    article.querySelector(".recipe-textContainer-heading-title").innerHTML =
+      this.name;
+    article.querySelector(
+      ".recipe-textContainer-heading-time-number"
+    ).innerHTML = this.time;
+    this.ingredients.forEach((ing) => {
+      const ingredient = document.createElement("span");
+      ingredient.classList.add(
+        "recipe-textContainer-description-ingredients-item"
+      );
+      ingredient.innerHTML = `${ing.ingredient}: ${ing.quantity || ""} ${
+        ing.unit || ""
+      }`;
+      article
+        .querySelector(".recipe-textContainer-description-ingredients")
+        .appendChild(ingredient);
+    });
+    return article;
   }
 }

@@ -1,5 +1,3 @@
-import { filtersRecipe } from "./index.js";
-
 export class AddAndDeleteFilters {
   constructor(allTagsCategory, type, array, launchFilterRecipe) {
     this.allTagsCategory = allTagsCategory;

@@ -1,7 +1,8 @@
+import recipeTmpl from "./recipeTmpl.js";
+
 export class DisplayRecipes {
   constructor(data) {
     this.data = data;
-    this.display();
   }
 
   display() {
