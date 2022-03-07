@@ -1,7 +1,7 @@
 import data from "./data.js";
-import { DisplayRecipes } from "./displayRecipes.js";
-import { MainSearchbar } from "./mainSearchbar.js";
 import { Recipe } from "./recipe.js";
+
+// ajout mainsearch in Main supprimer files, nv branche,
 
 class Main {
   constructor() {
@@ -9,7 +9,7 @@ class Main {
     this.appliancesArray = [];
     this.ustensilesArray = [];
     this.recipes = [];
-
+    this.searchBar = document.getElementById("searchBar");
     data.forEach((oneRecipe) => {
       const recipe = new Recipe(oneRecipe);
       this.recipes.push(recipe);
@@ -18,6 +18,7 @@ class Main {
     this.searchTag = { ingredient: "", appliance: "", ustensil: "" };
     this.extractTagsFromRecipes();
     this.displayTagsInDropdown();
+    this.mainSearchBar();
     const ingredientInput = document.querySelector(".ingredient-input");
     const applianceInput = document.querySelector(".appareil-input");
     const ustensilInput = document.querySelector(".ustensiles-input");
@@ -30,6 +31,24 @@ class Main {
     this.chevrons = document.querySelectorAll(".chevron");
     this.listBtn.forEach((btn) => {
       btn.addEventListener("click", this.chevronClick.bind(this));
+    });
+  }
+
+  mainSearchBar(matchingRecipes) {
+    this.searchBar.addEventListener("keyup", (e) => {
+      e.preventDefault();
+      const searchString = e.target.value.toLowerCase();
+      const filteredRecipes = matchingRecipes.filter((recipe) => {
+        return (
+          recipe.name.toLowerCase().includes(searchString) ||
+          recipe.appliance.toLowerCase().includes(searchString) ||
+          recipe.ingredients.find((el) =>
+            el.ingredient.toLowerCase().includes(searchString)
+          ) ||
+          recipe.ustensils.find((el) => el.toLowerCase().includes(searchString))
+        );
+      });
+      displayRecipes(filteredRecipes);
     });
   }
 
@@ -87,7 +106,7 @@ class Main {
     });
     console.log(matchingRecipes);
     this.displayRecipes(matchingRecipes);
-    new MainSearchbar(matchingRecipes);
+    this.mainSearchBar(matchingRecipes);
   }
 
   chevronClick(e) {
@@ -180,43 +199,3 @@ class Main {
 }
 
 new Main();
-// à réactiver
-
-////
-////
-// const recipeTemplate = `<div class="recipe-imgContainer">
-//             <img src="" alt="" />
-//           </div>
-//           <div class="recipe-textContainer">
-//             <div class="recipe-textContainer-heading">
-//               <h2 class="recipe-textContainer-heading-title">
-
-//               </h2>
-//               <div class="recipe-textContainer-heading-time">
-//                 <i class="far fa-clock recipe-textContainer-heading-time-icon"></i>
-//                 <span class="recipe-textContainer-heading-time-number">
-//                 }</span>
-//               </div>
-//             </div>
-//             <div class="recipe-textContainer-description">
-//               <div class="recipe-textContainer-description-ingredients">
-//               </div>
-//               <p class="recipe-textContainer-description-prep">
-//               </p>
-//             </div>
-//           </div>`;
-
-// const recipesContainer = document.querySelector(".article-container");
-
-// data.forEach((recipe) => {
-//   const recipeArticle = document.createElement("article");
-//   recipeArticle.classList.add("recipe");
-//   recipeArticle.innerHTML = recipeTemplate;
-//   recipeArticle.querySelector(".recipe-textContainer-heading-title").innerText =
-//     recipe.name;
-
-//   recipeArticle.appendChild(recipesContainer);
-// });
-
-////
-////

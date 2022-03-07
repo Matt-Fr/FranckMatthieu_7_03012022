@@ -106,6 +106,9 @@ export class Recipe {
       ingredient.innerHTML = `${ing.ingredient}: ${ing.quantity || ""} ${
         ing.unit || ""
       }`;
+      article.querySelector(
+        ".recipe-textContainer-description-prep"
+      ).innerHTML = this.description;
       article
         .querySelector(".recipe-textContainer-description-ingredients")
         .appendChild(ingredient);
