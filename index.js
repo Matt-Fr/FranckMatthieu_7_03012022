@@ -1,7 +1,8 @@
 import data from "./data.js";
+import { DisplayRecipes } from "./displayRecipes.js";
 import { Recipe } from "./recipe.js";
 
-// ajout mainsearch in Main supprimer files, nv branche,
+// ajout mainsearch in Main supprimer files, supprimer les anciennes recettes, nv branche, ajouter un sort
 
 class Main {
   constructor() {
@@ -54,10 +55,10 @@ class Main {
 
   displayRecipes(recipes) {
     const recipesContainer = document.querySelector(".article-container");
+    recipesContainer.innerHTML = "";
     recipes.forEach((recipe) => {
       const recipeCard = recipe.generateDomCard();
       recipesContainer.appendChild(recipeCard);
-      console.log(recipeCard);
     });
   }
 
@@ -79,8 +80,6 @@ class Main {
           tagHtml.classList.add(`tagList-container-item-${filterTag}`);
           tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
           tagHtml.addEventListener("click", () => {
-            console.log(this[`${filterTag}Array`]);
-            console.log(tagId);
             this[`${filterTag}Array`] = this[`${filterTag}Array`].filter(
               (el) => el !== tagId
             );
@@ -106,7 +105,7 @@ class Main {
     });
     console.log(matchingRecipes);
     this.displayRecipes(matchingRecipes);
-    this.mainSearchBar(matchingRecipes);
+    // this.mainSearchBar(matchingRecipes);
   }
 
   chevronClick(e) {
@@ -134,13 +133,26 @@ class Main {
       (total, cur) => {
         cur.ingredients.forEach((ing) => {
           if (!total.ingredients.includes(ing.ingredient)) {
+            console.log(total.ingredients);
+            total.ingredients.sort(function (a, b) {
+              return a === b ? 0 : a < b ? -1 : 1;
+            });
+
             total.ingredients.push(ing.ingredient);
           }
         });
-        if (!total.appliances.includes(cur.appliance))
+        if (!total.appliances.includes(cur.appliance)) {
+          total.appliances.sort(function (a, b) {
+            return a === b ? 0 : a < b ? -1 : 1;
+          });
           total.appliances.push(cur.appliance);
+        }
         cur.ustensils.forEach((el) => {
           if (!total.ustensiles.includes(el)) {
+            total.ustensiles.sort(function (a, b) {
+              return a === b ? 0 : a < b ? -1 : 1;
+            });
+
             total.ustensiles.push(el);
           }
         });
