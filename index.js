@@ -1,8 +1,7 @@
 import data from "./data.js";
-import { DisplayRecipes } from "./displayRecipes.js";
 import { Recipe } from "./recipe.js";
 
-// ajout mainsearch in Main supprimer files, supprimer les anciennes recettes, nv branche, ajouter un sort
+// ajout mainsearch in Main supprimer files, nv branche, faire l'architecture
 
 class Main {
   constructor() {
@@ -38,6 +37,7 @@ class Main {
   mainSearchBar(matchingRecipes) {
     this.searchBar.addEventListener("keyup", (e) => {
       e.preventDefault();
+      console.log(this.recipes);
       const searchString = e.target.value.toLowerCase();
       const filteredRecipes = matchingRecipes.filter((recipe) => {
         return (
@@ -108,6 +108,7 @@ class Main {
     // this.mainSearchBar(matchingRecipes);
   }
 
+  //open the tagList by clicking on the chevrons
   chevronClick(e) {
     const list = e.currentTarget.nextElementSibling;
     const chevron = e.currentTarget.children[0];
@@ -133,7 +134,6 @@ class Main {
       (total, cur) => {
         cur.ingredients.forEach((ing) => {
           if (!total.ingredients.includes(ing.ingredient)) {
-            console.log(total.ingredients);
             total.ingredients.sort(function (a, b) {
               return a === b ? 0 : a < b ? -1 : 1;
             });
