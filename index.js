@@ -18,7 +18,7 @@ class Main {
     this.searchTag = { ingredient: "", appliance: "", ustensil: "" };
     this.extractTagsFromRecipes();
     this.displayTagsInDropdown();
-    this.mainSearchBar();
+    this.mainSearchBar(this.recipes);
     const ingredientInput = document.querySelector(".ingredient-input");
     const applianceInput = document.querySelector(".appareil-input");
     const ustensilInput = document.querySelector(".ustensiles-input");
@@ -49,7 +49,7 @@ class Main {
           recipe.ustensils.find((el) => el.toLowerCase().includes(searchString))
         );
       });
-      displayRecipes(filteredRecipes);
+      this.displayRecipes(filteredRecipes);
     });
   }
 
@@ -105,7 +105,7 @@ class Main {
     });
     console.log(matchingRecipes);
     this.displayRecipes(matchingRecipes);
-    // this.mainSearchBar(matchingRecipes);
+    this.mainSearchBar(matchingRecipes);
   }
 
   //open the tagList by clicking on the chevrons
