@@ -84,8 +84,9 @@ export class Recipe {
   isMatchingAllFilters(
     filteringredients,
     filterAppliances,
-    filterUstensils,
-    filterSearch
+    filterUstensils
+    // ,
+    // filterSearch
   ) {
     console.log(filteringredients);
     console.log(filterAppliances);
@@ -93,8 +94,9 @@ export class Recipe {
     return (
       this.isMatchingIngredient(filteringredients) &&
       this.isMatchingAppliance(filterAppliances) &&
-      this.isMatchingUstensil(filterUstensils) &&
-      this.isMatchingSearch(filterSearch)
+      this.isMatchingUstensil(filterUstensils)
+      // &&
+      // this.isMatchingSearch(filterSearch)
     );
   }
 
