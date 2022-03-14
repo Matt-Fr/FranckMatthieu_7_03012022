@@ -76,16 +76,25 @@ export class Recipe {
     return isMatchingUstensil;
   }
 
+  //compléter et mettre dans js ensuite, supprimer la branche, en recréer une. Esseyez de voir pour faire rechereche principale en l'ajoutant ailleur
+  isMatchingSearch(searchString) {}
+
   //4 parametre méthodes avec mainsearch, rajouter 3 array et faire fonctionner les filtres.
 
-  isMatchingAllFilters(filteringredients, filterAppliances, filterUstensils) {
+  isMatchingAllFilters(
+    filteringredients,
+    filterAppliances,
+    filterUstensils,
+    filterSearch
+  ) {
     console.log(filteringredients);
     console.log(filterAppliances);
     console.log(filterUstensils);
     return (
       this.isMatchingIngredient(filteringredients) &&
       this.isMatchingAppliance(filterAppliances) &&
-      this.isMatchingUstensil(filterUstensils)
+      this.isMatchingUstensil(filterUstensils) &&
+      this.isMatchingSearch(filterSearch)
     );
   }
 
