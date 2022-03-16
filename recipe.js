@@ -22,17 +22,6 @@ export class Recipe {
     this.ingredients = data?.ingredients || [];
     this.ustensils = data?.ustensils || [];
   }
-  exportIng() {
-    const ingredients = [];
-
-    this.ingredients.forEach(({ ingredient }) => {
-      if (!ingredients.includes(ingredient)) {
-        ingredients.push(ingredient);
-      }
-    });
-
-    return ingredients;
-  }
 
   isMatchingIngredient(filteringredients) {
     let isMatchingIngredient = true;
