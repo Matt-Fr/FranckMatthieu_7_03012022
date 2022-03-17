@@ -1,8 +1,6 @@
 import data from "./data.js";
 import { Recipe } from "./recipe.js";
 
-// ajout mainsearch in Main supprimer files, nv branche, faire l'architecture
-
 class Main {
   constructor() {
     this.ingredientArray = [];
