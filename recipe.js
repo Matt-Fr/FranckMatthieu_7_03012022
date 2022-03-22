@@ -86,8 +86,6 @@ export class Recipe {
     );
   }
 
-  //4 parametre méthodes avec mainsearch, rajouter 3 array et faire fonctionner les filtres.
-
   isMatchingAllFilters(
     filteringredients,
     filterAppliances,
