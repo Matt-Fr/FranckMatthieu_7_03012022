@@ -65,7 +65,6 @@ export class Recipe {
     return isMatchingUstensil;
   }
 
-  //compléter et mettre dans js ensuite, supprimer la branche, en recréer une. Esseyez de voir pour faire rechereche principale en l'ajoutant ailleur
   isMatchingSearch(searchString) {
     const searchLowerC = searchString.toLowerCase();
     const isMatchingIngredient = this.ingredients.find((ing) =>
