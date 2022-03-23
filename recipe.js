@@ -74,9 +74,17 @@ export class Recipe {
     const isMatchingAppliance = this.appliance
       .toLowerCase()
       .includes(searchLowerC);
-    const isMatchingUstensil = this.ustensils.find((ust) =>
-      ust.toLowerCase().includes(searchLowerC)
-    );
+
+    let isMatchingUstensil = false;
+    for (const ustensil of this.ustensils) {
+      if (ustensil.toLowerCase().includes(searchLowerC)) {
+        isMatchingUstensil = true;
+      }
+      // return isMatchingUstensil;
+    }
+    // const isMatchingUstensil = this.ustensils.find((ust) =>
+    //   ust.toLowerCase().includes(searchLowerC)
+    // );
 
     return (
       isMatchingAppliance ||
