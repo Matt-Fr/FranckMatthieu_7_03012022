@@ -66,7 +66,7 @@ export class Recipe {
   }
 
   isMatchingSearch(searchString) {
-    console.time();
+    console.time("algo2");
     const searchLowerC = searchString.toLowerCase();
     let isMatchingIngredient = false;
 
@@ -89,7 +89,7 @@ export class Recipe {
         isMatchingUstensil = true;
       }
     }
-    console.timeEnd();
+    console.timeEnd("algo2");
     return (
       isMatchingAppliance ||
       isMatchingIngredient ||
