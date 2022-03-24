@@ -92,9 +92,6 @@ export class Recipe {
     filterUstensils,
     filterSearch
   ) {
-    console.log(filteringredients);
-    console.log(filterAppliances);
-    console.log(filterUstensils);
     return (
       this.isMatchingIngredient(filteringredients) &&
       this.isMatchingAppliance(filterAppliances) &&
