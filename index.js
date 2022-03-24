@@ -96,6 +96,9 @@ class Main {
         this.searchString
       );
     });
+    console.log(this.ingredientArray);
+    console.log(this.appliancesArray);
+    console.log(this.ustensilesArray);
     console.log(matchingRecipes);
     this.displayRecipes(matchingRecipes);
   }

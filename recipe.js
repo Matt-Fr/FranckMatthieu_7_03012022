@@ -66,6 +66,7 @@ export class Recipe {
   }
 
   isMatchingSearch(searchString) {
+    console.time();
     const searchLowerC = searchString.toLowerCase();
     let isMatchingIngredient = false;
 
@@ -76,7 +77,7 @@ export class Recipe {
         isMatchingIngredient = true;
       }
     }
-    console.log(isMatchingIngredient);
+
     const isMatchingtitle = this.name.toLowerCase().includes(searchLowerC);
     const isMatchingAppliance = this.appliance
       .toLowerCase()
@@ -88,7 +89,7 @@ export class Recipe {
         isMatchingUstensil = true;
       }
     }
-
+    console.timeEnd();
     return (
       isMatchingAppliance ||
       isMatchingIngredient ||
@@ -105,9 +106,6 @@ export class Recipe {
     filterUstensils,
     filterSearch
   ) {
-    console.log(filteringredients);
-    console.log(filterAppliances);
-    console.log(filterUstensils);
     return (
       this.isMatchingIngredient(filteringredients) &&
       this.isMatchingAppliance(filterAppliances) &&
