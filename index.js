@@ -85,7 +85,6 @@ class Main {
   }
 
   filtersRecipe() {
-    // à modifier filter pour seconde branche
     const matchingRecipes = this.recipes.filter((recipe) => {
       return recipe.isMatchingAllFilters(
         this.ingredientArray,
@@ -101,7 +100,7 @@ class Main {
     this.displayRecipes(matchingRecipes);
   }
 
-  //open the tagList by clicking on the chevrons
+  //open the dropdown by clicking on the chevrons
   chevronClick(e) {
     const list = e.currentTarget.nextElementSibling;
     const chevron = e.currentTarget.children[0];
