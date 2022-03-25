@@ -66,7 +66,6 @@ export class Recipe {
   }
 
   isMatchingSearch(searchString) {
-    console.time("Algo1");
     const searchLowerC = searchString.toLowerCase();
     const isMatchingIngredient = this.ingredients.find((ing) =>
       ing.ingredient.toLowerCase().includes(searchString.toLowerCase())
@@ -78,7 +77,7 @@ export class Recipe {
     const isMatchingUstensil = this.ustensils.find((ust) =>
       ust.toLowerCase().includes(searchLowerC)
     );
-    console.timeEnd("Algo1");
+
     return (
       isMatchingAppliance ||
       isMatchingIngredient ||
