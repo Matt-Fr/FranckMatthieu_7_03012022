@@ -248,3 +248,33 @@ header {
   transform: rotateX(180deg);
   transition: 0.3s ease-in-out;
 }
+
+@media only screen and (max-width: 955px) {
+  body {
+    margin: 0 1rem;
+  }
+  .article-container {
+    margin-top: 2rem;
+  }
+  .researchFields {
+    flex-wrap: wrap;
+    &-form {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  .recipe {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+  .ingredient-list,
+  .appareil-list,
+  .ustensiles-list {
+    width: auto;
+  }
+  .tagsIngredient,
+  .tagsAppliances,
+  .tagsUstensiles {
+    margin-right: 1rem;
+  }
+}
