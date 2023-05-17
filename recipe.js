@@ -1,105 +1,104 @@
 import recipeTmpl from "./recipeTmpl.js";
 
 export class Recipe {
-  constructor(
-    data = {
-      id: null,
-      ingredients: [],
-      name: "",
-      time: null,
-      description: "",
-      servings: null,
-      appliance: "",
-      ustensils: "",
-    }
-  ) {
-    this.name = data?.name || "";
-    this.id = data.id;
-    this.appliance = data?.appliance || "";
-    this.time = data.time;
-    this.description = data?.description || "";
-    this.servings = data.servings;
-    this.ingredients = data?.ingredients || [];
-    this.ustensils = data?.ustensils || [];
+  constructor(data = {}) {
+    const {
+      id = null,
+      ingredients = [],
+      name = "",
+      time = null,
+      description = "",
+      servings = null,
+      appliance = "",
+      ustensils = "",
+    } = data;
+
+    this.name = name;
+    this.id = id;
+    this.appliance = appliance;
+    this.time = time;
+    this.description = description;
+    this.servings = servings;
+    this.ingredients = ingredients;
+    this.ustensils = ustensils;
   }
 
-  isMatchingIngredient(filteringredients) {
-    let isMatchingIngredient = true;
-
-    if (filteringredients && filteringredients.length) {
-      filteringredients.forEach((ing) => {
-        isMatchingIngredient =
-          !!this.ingredients.find(
-            (i) => i.ingredient.toLowerCase() === ing.toLowerCase()
-          ) && isMatchingIngredient;
-      });
+  // Check if the recipe matches the specified ingredient filters
+  isMatchingIngredient(filterIngredients) {
+    if (!filterIngredients || filterIngredients.length === 0) {
+      return true;
     }
 
-    return isMatchingIngredient;
+    // Check if all filter ingredients are found in the recipe's ingredients
+    return filterIngredients.every((ing) =>
+      this.ingredients.some(
+        (i) => i.ingredient.toLowerCase() === ing.toLowerCase()
+      )
+    );
   }
 
+  // Check if the recipe matches the specified appliance filters
   isMatchingAppliance(filterAppliances) {
-    let isMatchingAppliance = true;
-    if (filterAppliances && filterAppliances.length) {
-      filterAppliances.forEach((app) => {
-        isMatchingAppliance =
-          this.appliance.toLowerCase() === app.toLowerCase() &&
-          isMatchingAppliance;
-      });
+    if (!filterAppliances || filterAppliances.length === 0) {
+      return true;
     }
 
-    return isMatchingAppliance;
+    // Check if any filter appliance matches the recipe's appliance
+    return filterAppliances.some(
+      (app) => this.appliance.toLowerCase() === app.toLowerCase()
+    );
   }
 
+  // Check if the recipe matches the specified ustensil filters
   isMatchingUstensil(filterUstensils) {
-    let isMatchingUstensil = true;
-    if (filterUstensils && filterUstensils.length) {
-      filterUstensils.forEach((ustensil) => {
-        isMatchingUstensil =
-          !!this.ustensils.find(
-            (u) => u.toLowerCase() === ustensil.toLowerCase()
-          ) && isMatchingUstensil;
-      });
+    if (!filterUstensils || filterUstensils.length === 0) {
+      return true;
     }
 
-    return isMatchingUstensil;
+    // Check if all filter ustensils are found in the recipe's ustensils
+    return filterUstensils.every((ustensil) =>
+      this.ustensils.some((u) => u.toLowerCase() === ustensil.toLowerCase())
+    );
   }
 
+  // Check if the recipe matches the specified search string
   isMatchingSearch(searchString) {
     const searchLowerC = searchString.toLowerCase();
-    const isMatchingIngredient = this.ingredients.find((ing) =>
-      ing.ingredient.toLowerCase().includes(searchString.toLowerCase())
+    const isMatchingIngredient = this.ingredients.some((ing) =>
+      ing.ingredient.toLowerCase().includes(searchLowerC)
     );
-    const isMatchingtitle = this.name.toLowerCase().includes(searchLowerC);
+    const isMatchingTitle = this.name.toLowerCase().includes(searchLowerC);
     const isMatchingAppliance = this.appliance
       .toLowerCase()
       .includes(searchLowerC);
-    const isMatchingUstensil = this.ustensils.find((ust) =>
+    const isMatchingUstensil = this.ustensils.some((ust) =>
       ust.toLowerCase().includes(searchLowerC)
     );
 
     return (
       isMatchingAppliance ||
       isMatchingIngredient ||
-      isMatchingtitle ||
+      isMatchingTitle ||
       isMatchingUstensil
     );
   }
 
+  // Check if the recipe matches all specified filters
   isMatchingAllFilters(
-    filteringredients,
+    filterIngredients,
     filterAppliances,
     filterUstensils,
     filterSearch
   ) {
     return (
-      this.isMatchingIngredient(filteringredients) &&
+      this.isMatchingIngredient(filterIngredients) &&
       this.isMatchingAppliance(filterAppliances) &&
       this.isMatchingUstensil(filterUstensils) &&
       this.isMatchingSearch(filterSearch)
     );
   }
 
+  // Generate the DOM card for the recipe
   generateDomCard() {
     const article = document.createElement("article");
     article.classList.add("recipe");
@@ -109,6 +108,8 @@ export class Recipe {
     article.querySelector(
       ".recipe-textContainer-heading-time-number"
     ).innerHTML = this.time;
+
+    // Add each ingredient to the recipe card
     this.ingredients.forEach((ing) => {
       const ingredient = document.createElement("span");
       ingredient.classList.add(
@@ -117,13 +118,15 @@ export class Recipe {
       ingredient.innerHTML = `${ing.ingredient}: ${ing.quantity || ""} ${
         ing.unit || ""
       }`;
-      article.querySelector(
-        ".recipe-textContainer-description-prep"
-      ).innerHTML = this.description;
       article
         .querySelector(".recipe-textContainer-description-ingredients")
         .appendChild(ingredient);
     });
+
+    // Set the recipe description
+    article.querySelector(".recipe-textContainer-description-prep").innerHTML =
+      this.description;
+
     return article;
   }
 }

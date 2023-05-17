@@ -9,30 +9,40 @@ class Main {
     this.searchString = "";
     this.recipes = [];
     this.searchBar = document.getElementById("searchBar");
+
+    // Create Recipe instances for each recipe in the data
     data.forEach((oneRecipe) => {
       const recipe = new Recipe(oneRecipe);
       this.recipes.push(recipe);
     });
+
     this.displayRecipes(this.recipes);
     this.searchTag = { ingredient: "", appliance: "", ustensil: "" };
     this.extractTagsFromRecipes(this.recipes);
     this.displayTagsInDropdown();
     this.mainSearchBar();
+
     const ingredientInput = document.querySelector(".ingredient-input");
     const applianceInput = document.querySelector(".appareil-input");
     const ustensilInput = document.querySelector(".ustensiles-input");
+
+    // Add event listeners for tag search inputs
     ingredientInput.addEventListener("keyup", this.tagSearch.bind(this));
     applianceInput.addEventListener("keyup", this.tagSearch.bind(this));
     ustensilInput.addEventListener("keyup", this.tagSearch.bind(this));
+
     this.lists = document.querySelectorAll(".list");
     this.listBtn = document.querySelectorAll(".researchFields-form-btn");
     this.forms = document.querySelectorAll(".researchFields-form");
     this.chevrons = document.querySelectorAll(".chevron");
+
+    // Add event listener for chevron click
     this.listBtn.forEach((btn) => {
       btn.addEventListener("click", this.chevronClick.bind(this));
     });
   }
 
+  // Add event listener for main search bar
   mainSearchBar() {
     this.searchBar.addEventListener("keyup", (e) => {
       e.preventDefault();
@@ -48,6 +58,7 @@ class Main {
     });
   }
 
+  // Display recipes in the UI
   displayRecipes(recipes) {
     const recipesContainer = document.querySelector(".article-container");
     recipesContainer.innerHTML = "";
@@ -61,8 +72,8 @@ class Main {
     }
   }
 
+  // Add or delete filters for tag selection
   addAndDeleteFilters(filterTag) {
-    //ajout maj premiere lettre
     document
       .querySelectorAll(
         `.tags${filterTag.charAt(0).toUpperCase() + filterTag.slice(1)}`
@@ -72,12 +83,17 @@ class Main {
           ".tagList-container-ingredient"
         );
         const tagId = singleTag.getAttribute("data-id");
+
         singleTag.addEventListener("click", (e) => {
           e.preventDefault();
+
+          // Create tag HTML element
           const tagHtml = document.createElement("li");
           tagHtml.classList.add("tagList-container-item");
           tagHtml.classList.add(`tagList-container-item-${filterTag}`);
           tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
+
+          // Add event listener for tag deletion
           tagHtml.addEventListener("click", () => {
             this[`${filterTag}Array`] = this[`${filterTag}Array`].filter(
               (el) => el !== tagId
@@ -86,6 +102,7 @@ class Main {
             tagListContainer.removeChild(tagHtml);
           });
 
+          // Append tag HTML element
           tagListContainer.appendChild(tagHtml);
           this[`${filterTag}Array`].push(tagId);
           this.filtersRecipe();
@@ -93,6 +110,7 @@ class Main {
       });
   }
 
+  // Apply filters to recipes based on selected tags and search string
   filtersRecipe() {
     const matchingRecipes = this.recipes.filter((recipe) => {
       return recipe.isMatchingAllFilters(
@@ -102,20 +120,23 @@ class Main {
         this.searchString
       );
     });
+
     console.log(this.ingredientArray);
     console.log(this.appliancesArray);
     console.log(this.ustensilesArray);
     console.log(matchingRecipes);
+
     this.displayRecipes(matchingRecipes);
     this.extractTagsFromRecipes(matchingRecipes);
     this.displayTagsInDropdown();
   }
 
-  //open the dropdown by clicking on the chevrons
+  // Open the dropdown by clicking on the chevrons
   chevronClick(e) {
     const list = e.currentTarget.nextElementSibling;
     const chevron = e.currentTarget.children[0];
 
+    // Rotate chevron and toggle open class for the list
     this.chevrons.forEach((item) => {
       if (item !== chevron) {
         item.classList.remove("rotate");
@@ -132,6 +153,7 @@ class Main {
     list.classList.toggle("open");
   }
 
+  // Extract tags from recipes for tag dropdown
   extractTagsFromRecipes(filteredRecipes) {
     this.recipesElements = filteredRecipes.reduce(
       (total, cur) => {
@@ -165,6 +187,8 @@ class Main {
       { ingredients: [], appliances: [], ustensiles: [] }
     );
   }
+
+  // Display tags in the tag dropdown
   displayTagsInDropdown() {
     const ingredientList = document.querySelector(".ingredient-list");
     const appareilList = document.querySelector(".appareil-list");
@@ -174,6 +198,7 @@ class Main {
     appareilList.innerHTML = "";
     ustensilList.innerHTML = "";
 
+    // Filter and display ingredient tags
     this.recipesElements.ingredients
       .filter((ing) =>
         ing.toLowerCase().includes(this.searchTag.ingredient.toLowerCase())
@@ -184,6 +209,7 @@ class Main {
       });
     this.addAndDeleteFilters("ingredient");
 
+    // Filter and display appliance tags
     this.recipesElements.appliances
       .filter((app) =>
         app.toLowerCase().includes(this.searchTag.appliance.toLowerCase())
@@ -194,6 +220,7 @@ class Main {
       });
     this.addAndDeleteFilters("appliances");
 
+    // Filter and display ustensil tags
     this.recipesElements.ustensiles
       .filter((ust) =>
         ust.toLowerCase().includes(this.searchTag.ustensil.toLowerCase())
@@ -205,6 +232,8 @@ class Main {
 
     this.addAndDeleteFilters("ustensiles");
   }
+
+  // Handle tag search
   tagSearch(e) {
     e.preventDefault();
     const type = e.target.getAttribute("data-type");
