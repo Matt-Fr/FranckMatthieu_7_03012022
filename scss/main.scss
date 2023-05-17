@@ -1,6 +1,16 @@
+// Define variables
+$color-primary: #3282f7;
+$color-secondary: #68d9a4;
+$color-tertiary: #ed6454;
+$color-background: #e7e7e7;
+$color-text: #000000;
+$color-text-light: #ffffff;
+$font-primary: "Lato", sans-serif;
+$font-secondary: "Roboto", sans-serif;
+
 body {
-  font-family: "Lato", sans-serif;
-  margin: 0 5rem 0 5rem;
+  font-family: $font-primary;
+  margin: 0 5rem;
 }
 
 header {
@@ -17,27 +27,31 @@ header {
   &-input {
     width: 100%;
     height: 69px;
-    background: #e7e7e7;
+    background: $color-background;
     border: none;
     border-radius: 5px 0 0 5px;
     font-size: 18px;
     padding-left: 1rem;
+    color: $color-text-light;
   }
+
   &-submit {
     height: 69px;
     background: none;
     border: none;
     padding-right: 1rem;
     font-size: 25px;
-    background: #e7e7e7;
+    background: $color-background;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
+    color: $color-text;
   }
 }
+
 .researchFields {
   display: flex;
   margin-top: 1rem;
-  color: white;
+  color: $color-text-light;
   font-size: 18px;
 
   &-form {
@@ -45,7 +59,7 @@ header {
     justify-content: space-between;
     height: 69px;
     margin-right: 1rem;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
 
     &-label {
       display: flex;
@@ -59,7 +73,13 @@ header {
       border-radius: 5px 0 0 5px;
       outline-width: 0;
       font-size: inherit;
+      &.ingredient-input,
+      &.appareil-input,
+      &.ustensiles-input {
+        color: $color-text-light;
+      }
     }
+
     &-btn {
       color: inherit;
       background: inherit;
@@ -74,55 +94,34 @@ header {
 
 .tagList {
   display: flex;
+
   &-container {
     display: flex;
     padding: 0;
+
     &-item {
       list-style: none;
-
       margin-right: 1rem;
       cursor: pointer;
       font-size: 14px;
       padding: 1rem;
-      color: white;
+      color: $color-text-light;
       border-radius: 0.3rem;
-    }
-    &-item-ingredient {
-      background-color: #3282f7;
-    }
-    &-item-appliances {
-      background-color: #68d9a4;
-    }
-    &-item-ustensiles {
-      background-color: #ed6454;
+      &-ingredient {
+        background-color: $color-primary;
+      }
+      &-appliances {
+        background-color: $color-secondary;
+      }
+      &-ustensiles {
+        background-color: $color-tertiary;
+      }
     }
   }
 }
 
-.ingredient-list {
-  position: absolute;
-  background-color: inherit;
-  top: 48px;
-  left: 0;
-  width: 667px;
-  display: none;
-  flex-wrap: wrap;
-  border-radius: 0 5px 5px 5px;
-  padding: 1rem;
-}
-
-.appareil-list {
-  position: absolute;
-  background-color: inherit;
-  top: 48px;
-  left: 0;
-  width: 667px;
-  display: none;
-  flex-wrap: wrap;
-  border-radius: 0 5px 5px 5px;
-  padding: 1rem;
-}
-
+.ingredient-list,
+.appareil-list,
 .ustensiles-list {
   position: absolute;
   background-color: inherit;
@@ -150,21 +149,22 @@ header {
 }
 
 .ingredient-form {
-  background: #3282f7;
+  background: $color-primary;
   position: relative;
 }
+
 .appareil-form {
-  background: #68d9a4;
+  background: $color-secondary;
   position: relative;
 }
 
 .ustensiles-form {
-  background: #ed6454;
+  background: $color-tertiary;
   position: relative;
 }
 
 .researchFields-form-input::placeholder {
-  color: white;
+  color: $color-text-light;
 }
 
 .article-container {
@@ -179,6 +179,7 @@ header {
   height: 364px;
   flex-direction: column;
   padding: 2rem 0;
+
   &-imgContainer {
     min-height: 178px;
     width: 100%;
@@ -186,12 +187,13 @@ header {
     overflow: hidden;
     border-radius: 0.5rem 0.5rem 0 0;
   }
+
   &-textContainer {
     display: flex;
     flex-direction: column;
     border-radius: 0 0 0.5rem 0.5rem;
     padding: 1rem;
-    background-color: #e7e7e7;
+    background-color: $color-background;
 
     &-heading {
       display: flex;
@@ -199,34 +201,38 @@ header {
       justify-content: space-between;
       width: 100%;
       margin-bottom: 1rem;
+
       &-title {
         margin: 0;
         font-size: 18px;
         font-weight: normal;
       }
+
       &-time {
         font-weight: bold;
         font-size: 18px;
       }
     }
+
     &-description {
       display: flex;
+
       &-ingredients {
         min-width: 50%;
+
         &-item {
           display: flex;
-
           font-size: 12px;
           font-weight: bold;
         }
       }
+
       &-prep {
         height: 109px;
         min-width: 50%;
         margin: 0;
-        font-family: "Roboto", sans-serif;
+        font-family: $font-secondary;
         font-size: 12px;
-
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 8;
@@ -253,28 +259,45 @@ header {
   body {
     margin: 0 1rem;
   }
+
   .article-container {
     margin-top: 2rem;
   }
+
   .researchFields {
     flex-wrap: wrap;
+
     &-form {
       width: 100%;
       margin: 0;
     }
   }
+
   .recipe {
     width: 100%;
     padding: 0.5rem 0;
   }
+
   .ingredient-list,
   .appareil-list,
   .ustensiles-list {
     width: auto;
   }
+
   .tagsIngredient,
   .tagsAppliances,
   .tagsUstensiles {
     margin-right: 1rem;
   }
+}
+
+.researchBar-submit {
+  color: $color-text;
+}
+
+.recipe,
+.researchFields-form-input.ingredient-input,
+.researchFields-form-input.appareil-input,
+.researchFields-form-input.ustensiles-input {
+  color: $color-text;
 }

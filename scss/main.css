@@ -1,6 +1,6 @@
 body {
   font-family: "Lato", sans-serif;
-  margin: 0 5rem 0 5rem;
+  margin: 0 5rem;
 }
 
 header {
@@ -22,6 +22,7 @@ header {
   border-radius: 5px 0 0 5px;
   font-size: 18px;
   padding-left: 1rem;
+  color: #ffffff;
 }
 .researchBar-submit {
   height: 69px;
@@ -32,12 +33,13 @@ header {
   background: #e7e7e7;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
+  color: #000000;
 }
 
 .researchFields {
   display: flex;
   margin-top: 1rem;
-  color: white;
+  color: #ffffff;
   font-size: 18px;
 }
 .researchFields-form {
@@ -45,7 +47,7 @@ header {
   justify-content: space-between;
   height: 69px;
   margin-right: 1rem;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
 }
 .researchFields-form-label {
   display: flex;
@@ -58,6 +60,9 @@ header {
   border-radius: 5px 0 0 5px;
   outline-width: 0;
   font-size: inherit;
+}
+.researchFields-form-input.ingredient-input, .researchFields-form-input.appareil-input, .researchFields-form-input.ustensiles-input {
+  color: #ffffff;
 }
 .researchFields-form-btn {
   color: inherit;
@@ -82,7 +87,7 @@ header {
   cursor: pointer;
   font-size: 14px;
   padding: 1rem;
-  color: white;
+  color: #ffffff;
   border-radius: 0.3rem;
 }
 .tagList-container-item-ingredient {
@@ -95,30 +100,8 @@ header {
   background-color: #ed6454;
 }
 
-.ingredient-list {
-  position: absolute;
-  background-color: inherit;
-  top: 48px;
-  left: 0;
-  width: 667px;
-  display: none;
-  flex-wrap: wrap;
-  border-radius: 0 5px 5px 5px;
-  padding: 1rem;
-}
-
-.appareil-list {
-  position: absolute;
-  background-color: inherit;
-  top: 48px;
-  left: 0;
-  width: 667px;
-  display: none;
-  flex-wrap: wrap;
-  border-radius: 0 5px 5px 5px;
-  padding: 1rem;
-}
-
+.ingredient-list,
+.appareil-list,
 .ustensiles-list {
   position: absolute;
   background-color: inherit;
@@ -161,11 +144,11 @@ header {
 }
 
 .researchFields-form-input::-moz-placeholder {
-  color: white;
+  color: #ffffff;
 }
 
 .researchFields-form-input::placeholder {
-  color: white;
+  color: #ffffff;
 }
 
 .article-container {
@@ -275,4 +258,14 @@ header {
   .tagsUstensiles {
     margin-right: 1rem;
   }
+}
+.researchBar-submit {
+  color: #000000;
+}
+
+.recipe,
+.researchFields-form-input.ingredient-input,
+.researchFields-form-input.appareil-input,
+.researchFields-form-input.ustensiles-input {
+  color: #000000;
 }/*# sourceMappingURL=main.css.map */
