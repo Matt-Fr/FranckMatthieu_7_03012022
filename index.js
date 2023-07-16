@@ -91,7 +91,7 @@ class Main {
           const tagHtml = document.createElement("li");
           tagHtml.classList.add("tagList-container-item");
           tagHtml.classList.add(`tagList-container-item-${filterTag}`);
-          tagHtml.innerHTML = `${tagId}<span class="far fa-times-circle"></span>`;
+          tagHtml.innerHTML = `${tagId} <span class="far fa-times-circle"></span>`;
 
           // Add event listener for tag deletion
           tagHtml.addEventListener("click", () => {
