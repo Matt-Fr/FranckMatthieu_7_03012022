@@ -26,7 +26,6 @@ class Main {
     const applianceInput = document.querySelector(".appareil-input");
     const ustensilInput = document.querySelector(".ustensiles-input");
 
-    // Add event listeners for tag search inputs
     ingredientInput.addEventListener("keyup", this.tagSearch.bind(this));
     applianceInput.addEventListener("keyup", this.tagSearch.bind(this));
     ustensilInput.addEventListener("keyup", this.tagSearch.bind(this));
@@ -36,13 +35,11 @@ class Main {
     this.forms = document.querySelectorAll(".researchFields-form");
     this.chevrons = document.querySelectorAll(".chevron");
 
-    // Add event listener for chevron click
     this.listBtn.forEach((btn) => {
       btn.addEventListener("click", this.chevronClick.bind(this));
     });
   }
 
-  // Add event listener for main search bar
   mainSearchBar() {
     this.searchBar.addEventListener("keyup", (e) => {
       e.preventDefault();
@@ -72,7 +69,6 @@ class Main {
     }
   }
 
-  // Add or delete filters for tag selection
   addAndDeleteFilters(filterTag) {
     document
       .querySelectorAll(
@@ -153,7 +149,6 @@ class Main {
     list.classList.toggle("open");
   }
 
-  // Extract tags from recipes for tag dropdown
   extractTagsFromRecipes(filteredRecipes) {
     this.recipesElements = filteredRecipes.reduce(
       (total, cur) => {
@@ -188,7 +183,6 @@ class Main {
     );
   }
 
-  // Display tags in the tag dropdown
   displayTagsInDropdown() {
     const ingredientList = document.querySelector(".ingredient-list");
     const appareilList = document.querySelector(".appareil-list");
@@ -233,7 +227,6 @@ class Main {
     this.addAndDeleteFilters("ustensiles");
   }
 
-  // Handle tag search
   tagSearch(e) {
     e.preventDefault();
     const type = e.target.getAttribute("data-type");
