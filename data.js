@@ -1840,7 +1840,7 @@ export default [
     name: "Frangipane",
     servings: 2,
     photoLink:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hervecuisine.com%2Frecette%2Fgalette-de-rois-frangipane%2F&psig=AOvVaw2O8Gkx18fbcSEtPWpcs1cS&ust=1692461843234000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLC5xOnN5oADFQAAAAAdAAAAABAE",
+      "https://www.hervecuisine.com/wp-content/uploads/382821_10150565141810239_66046640238_11211490_1242209213_n-e1672304574130.jpg.webp",
     ingredients: [
       {
         ingredient: "Pâte feuilletée",
