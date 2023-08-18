@@ -183,6 +183,12 @@ header {
   overflow: hidden;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(149, 157, 165, 0.4) 0px 12px 32px;
+  }
 
   &-imgContainer {
     min-height: 50%;
