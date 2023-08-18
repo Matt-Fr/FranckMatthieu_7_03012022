@@ -120,9 +120,10 @@ export class Recipe {
       ingredient.classList.add(
         "recipe-textContainer-description-ingredients-item"
       );
-      ingredient.innerHTML = `${ing.ingredient}: ${ing.quantity || ""} ${
-        ing.unit || ""
-      }`;
+      ingredient.innerHTML = `${ing.ingredient}${
+        ing.quantity ? `: ${ing.quantity}` : ""
+      } ${ing.unit || ""}`;
+
       article
         .querySelector(".recipe-textContainer-description-ingredients")
         .appendChild(ingredient);
