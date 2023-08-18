@@ -178,22 +178,25 @@ header {
   width: 380px;
   height: 364px;
   flex-direction: column;
-  padding: 2rem 0;
+  margin: 2rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   &-imgContainer {
-    min-height: 178px;
+    min-height: 50%;
     width: 100%;
     background-color: #c7bebe;
-    overflow: hidden;
-    border-radius: 0.5rem 0.5rem 0 0;
   }
 
   &-textContainer {
     display: flex;
     flex-direction: column;
-    border-radius: 0 0 0.5rem 0.5rem;
+    height: 50%;
     padding: 1rem;
     background-color: $color-background;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &-heading {
       display: flex;
@@ -206,6 +209,10 @@ header {
         margin: 0;
         font-size: 18px;
         font-weight: normal;
+        white-space: nowrap;
+        max-width: 84%;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       &-time {
@@ -216,9 +223,12 @@ header {
 
     &-description {
       display: flex;
-
+      justify-content: space-between;
+      height: 100%;
+      overflow: hidden;
       &-ingredients {
-        min-width: 50%;
+        width: 48%;
+        overflow-y: auto;
 
         &-item {
           display: flex;
@@ -228,12 +238,11 @@ header {
       }
 
       &-prep {
-        height: 109px;
-        min-width: 50%;
+        width: 48%;
         margin: 0;
         font-family: $font-secondary;
         font-size: 12px;
-        overflow: hidden;
+        overflow: hidden; /* Hide overflowing content */
         display: -webkit-box;
         -webkit-line-clamp: 8;
         -webkit-box-orient: vertical;
