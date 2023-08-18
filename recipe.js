@@ -11,6 +11,7 @@ export class Recipe {
       servings = null,
       appliance = "",
       ustensils = "",
+      photoLink = "",
     } = data;
 
     this.name = name;
@@ -21,6 +22,7 @@ export class Recipe {
     this.servings = servings;
     this.ingredients = ingredients;
     this.ustensils = ustensils;
+    this.photoLink = photoLink;
   }
 
   // Check if the recipe matches the specified ingredient filters
@@ -108,6 +110,9 @@ export class Recipe {
     article.querySelector(
       ".recipe-textContainer-heading-time-number"
     ).innerHTML = this.time;
+
+    const imgElement = article.querySelector(".recipe-imgContainer-img");
+    imgElement.src = this.photoLink;
 
     // Add each ingredient to the recipe card
     this.ingredients.forEach((ing) => {

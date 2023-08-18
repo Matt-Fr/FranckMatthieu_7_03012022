@@ -1,5 +1,5 @@
 export default `<div class="recipe-imgContainer">
-            <img src="" alt="" />
+            <img class="recipe-imgContainer-img" src="" alt="" />
           </div>
           <div class="recipe-textContainer">
             <div class="recipe-textContainer-heading">
