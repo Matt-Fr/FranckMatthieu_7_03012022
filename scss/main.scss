@@ -191,9 +191,18 @@ header {
   }
 
   &-imgContainer {
-    min-height: 50%;
+    height: 50%;
     width: 100%;
     background-color: #c7bebe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-textContainer {

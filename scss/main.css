@@ -174,9 +174,18 @@ header {
   box-shadow: rgba(149, 157, 165, 0.4) 0px 12px 32px;
 }
 .recipe-imgContainer {
-  min-height: 50%;
+  height: 50%;
   width: 100%;
   background-color: #c7bebe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recipe-imgContainer-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 .recipe-textContainer {
   display: flex;
