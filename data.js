@@ -1689,7 +1689,7 @@ export default [
     name: "Far breton",
     servings: 6,
     photoLink:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.toutesrecettes.com%2Ffar-breton-aux-pruneaux-bon-et-moelleux&psig=AOvVaw0vKIYcXTyUsmyA7o7rJiQx&ust=1692461546021000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJCa99vM5oADFQAAAAAdAAAAABAa",
+      "https://www.hervecuisine.com/wp-content/uploads/2015/04/far-site.jpg.webp",
     ingredients: [
       {
         ingredient: "Farine",
