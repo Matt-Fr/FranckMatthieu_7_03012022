@@ -10,7 +10,7 @@ $font-secondary: "Roboto", sans-serif;
 
 body {
   font-family: $font-primary;
-  margin: 0 5rem;
+  margin: 2rem 5rem;
 }
 
 header {
@@ -182,7 +182,6 @@ header {
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
